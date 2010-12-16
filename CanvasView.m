@@ -8,56 +8,112 @@
 
 #import "CanvasView.h"
 
+@interface CanvasView()
+- (void) reconfigurePageViewIndexes;	
+- (void) refreshTiles;
+- (void) initTileDimensionsForBoundsSize:(CGSize) boundsSize;
+@end
+
+
 @implementation CanvasView
 
-@synthesize previousPageView = previousPageView_;
-@synthesize currentPageView = currentPageView_;
-@synthesize nextPageView = nextPageView_;
+#define kMarginMinimum CGSizeMake(10.,10.)
+
+@synthesize previousPagePlaceholder = previousPagePlaceholder_;
+@synthesize currentPagePlaceholder = currentPagePlaceholder_;
+@synthesize nextPagePlaceholder = nextPagePlaceholder_;
+@synthesize datasource = datasource_;
+@synthesize canvasControlDelegate = canvasControlDelegate_;
 @synthesize page;
 
-- (id)initWithFrame:(CGRect)frame {
-    
+static int nColumns;
+static int nRows;
+static CGSize tileMargin;
+static int tilesPerPage;
+static CGSize tileSize;
+static CGSize pageMargin;
+
+
+- (id)initWithFrame:(CGRect)frame withDataSource:(id<CanvasDataSourceProtocol>) datasource
+{    
     self = [super initWithFrame:frame];
     if (self) 
 	{
 		self.delegate = self;
+		self.datasource = datasource;
 		self.backgroundColor = [UIColor blackColor];
-		self.decelerationRate = 0.5;
+		self.pagingEnabled = YES;
+		self.showsVerticalScrollIndicator = NO;
+		self.showsHorizontalScrollIndicator = NO;
+		self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+		self.autoresizesSubviews = YES;
+		self.contentMode = UIViewContentModeScaleAspectFill;
+		self.page = 0;
+		areDimensionsUpdated_ = NO;
+		
+		previousPagePlaceholder_ = [[CanvasPagePlaceholder alloc] initWithFrame:frame withLabel:@"Left"];
+		currentPagePlaceholder_ = [[CanvasPagePlaceholder alloc] initWithFrame:frame withLabel:@"Center"];
+		nextPagePlaceholder_ = [[CanvasPagePlaceholder alloc] initWithFrame:frame withLabel:@"Right"];
+		
+		[self addSubview:previousPagePlaceholder_];
+		[self addSubview:currentPagePlaceholder_];
+		[self addSubview:nextPagePlaceholder_];
 
-		page = 0;
-		previousPageView_ = [[CanvasPageView alloc] init];
-		currentPageView_ = [[CanvasPageView alloc] init];
-		nextPageView_ = [[CanvasPageView alloc] init];
-
-		[self addSubview:previousPageView_];
-		[self addSubview:currentPageView_];
-		[self addSubview:nextPageView_];
-		
-		CGSize boundSize = self.bounds.size;
-		
-		// create enough scroll space for 3 page panels (prev, current, next)
-		self.contentSize = CGSizeMake(boundSize.width * 3, boundSize.height);
-		
-		self.previousPageView.frame = CGRectMake(0, 0, boundSize.width, boundSize.height);
-		self.currentPageView.frame = CGRectMake(boundSize.width, 0, boundSize.width, boundSize.height);
-		self.nextPageView.frame = CGRectMake(boundSize.width * 2, 0, boundSize.width, boundSize.height);
-
-		
-//		// set to offset to center page
-//		self.contentOffset = CGPointMake(boundSize.width, 0);
+		[self resetDimensions];
 		
     }
     return self;
 }
 
+- (void) setNeedsLayout
+{
+	[super setNeedsLayout];
+	areDimensionsUpdated_ = NO;
+}
 
+- (void) resetDimensions
+{
+	NSLog(@"reseting dimensions");
+	CGSize boundSize = self.bounds.size;
+
+	[self initTileDimensionsForBoundsSize:boundSize];
+	
+	// create enough scroll space for 3 page panels (prev, current, next)
+	self.contentSize = CGSizeMake(boundSize.width * 3, boundSize.height);
+	
+	previousPagePlaceholder_.frame = CGRectMake(0, 0, boundSize.width, boundSize.height);
+	currentPagePlaceholder_.frame = CGRectMake(boundSize.width, 0, boundSize.width, boundSize.height);
+	nextPagePlaceholder_.frame = CGRectMake(boundSize.width * 2, 0, boundSize.width, boundSize.height);
+	
+	[self refreshTiles];
+	
+	// set to offset to center page
+	[self setContentOffset:CGPointMake(boundSize.width, 0)];
+}
+
+- (void) initTileDimensionsForBoundsSize:(CGSize) boundsSize;
+{
+	tileSize = [self.datasource tileDimensions];
+	pageMargin = [self.datasource pageMargin];
+	boundsSize.width -= pageMargin.width * 2;
+	boundsSize.height -= pageMargin.height * 2;
+	nColumns = floor(boundsSize.width / (tileSize.width + kMarginMinimum.width));
+	nRows = floor(boundsSize.height / (tileSize.height + kMarginMinimum.height));
+	CGFloat marginHorizontal = (boundsSize.width - nColumns * tileSize.width) / (nColumns + 1);
+	CGFloat marginVertical = (boundsSize.height - nRows * tileSize.height) / (nRows + 1);
+	tileMargin = CGSizeMake(marginHorizontal, marginVertical);
+	tilesPerPage = nColumns * nRows;
+	NSLog(@"Cols: %d \t Rows: %d \t Tiles: %d", nColumns, nRows, tilesPerPage);	
+}
 
 - (void) layoutSubviews
 {
+	if (!areDimensionsUpdated_)
+	{
+		[self resetDimensions];
+		areDimensionsUpdated_ = YES;
+	}
 	[super layoutSubviews];
-	self.previousPageView.pageLabel = [NSString stringWithFormat:@"%d", page - 1];
-	self.currentPageView.pageLabel = [NSString stringWithFormat:@"%d", page];
-	self.nextPageView.pageLabel = [NSString stringWithFormat:@"%d", page + 1];
 }
 
 /*
@@ -69,74 +125,198 @@
 */
 
 - (void)dealloc {
-	[self.previousPageView release], nil;
-	[self.currentPageView release], nil;
-	[self.nextPageView release], nil;
+	self.previousPagePlaceholder = nil;
+	self.currentPagePlaceholder = nil;
+	self.nextPagePlaceholder = nil;
+	self.datasource = nil;
+	self.canvasControlDelegate = nil;
     [super dealloc];
 }
 
-- (void) snapToEdges
-{
-	CGFloat boundWidth = self.bounds.size.width;
-	CGFloat xOffset = self.contentOffset.x;
-	CGFloat scrollToOffset;
+//- (void) refreshTiles;
+//{
+//	self.currentPagePlaceholder.pageView.pageTileDictionaries = [self.datasource tileDictionariesForPage:self.page];
+//	self.previousPagePlaceholder.pageView.pageTileDictionaries = [self.datasource tileDictionariesForPage:self.page - 1];
+//	self.nextPagePlaceholder.pageView.pageTileDictionaries = [self.datasource tileDictionariesForPage:self.page + 1];
+//	[self setNeedsDisplay];
+//}
 
-	if (xOffset > boundWidth * 0.7 &&
-		xOffset < boundWidth * 1.4) 
+//- (void) snap
+
+- (void) refreshTiles;
+{
+	[self reconfigurePageViewIndexes];
+	[self.currentPagePlaceholder.pageView updateTilesWithDataSource:self.datasource];
+	[self.nextPagePlaceholder.pageView updateTilesWithDataSource:self.datasource];
+	[self.previousPagePlaceholder.pageView updateTilesWithDataSource:self.datasource];
+}
+
+- (void) reconfigurePageViewIndexes;
+{
+	self.currentPagePlaceholder.pageView.pageIndex = page;
+	self.previousPagePlaceholder.pageView.pageIndex = page - 1;
+	self.nextPagePlaceholder.pageView.pageIndex = page + 1;
+}
+
+- (void) pagedForward
+{
+	self.page++;
+	
+	CanvasPageView * oldViewCurrent = [self.currentPagePlaceholder.pageView retain];
+	CanvasPageView * oldViewNext = [self.nextPagePlaceholder.pageView retain];
+	CanvasPageView * oldViewPrevious = [self.previousPagePlaceholder.pageView retain];
+	
+	[oldViewCurrent removeFromSuperview];
+	[oldViewNext removeFromSuperview];
+	[oldViewPrevious removeFromSuperview];
+	
+	self.currentPagePlaceholder.pageView = oldViewNext;
+	self.previousPagePlaceholder.pageView = oldViewCurrent;
+	self.nextPagePlaceholder.pageView = oldViewPrevious;	
+
+	[self.currentPagePlaceholder addSubview:self.currentPagePlaceholder.pageView];
+	[self.previousPagePlaceholder addSubview:self.previousPagePlaceholder.pageView];
+	[self.nextPagePlaceholder addSubview:self.nextPagePlaceholder.pageView];
+	
+	[self reconfigurePageViewIndexes];	
+	
+	[self.nextPagePlaceholder.pageView updateTilesWithDataSource:self.datasource];
+
+	[oldViewCurrent release];
+	[oldViewNext release];
+	[oldViewPrevious release];
+	[self.canvasControlDelegate canvasViewDidScrollNext:self];
+	
+	if ((self.page + 1) * tilesPerPage >= [self.datasource totalNumberOfTiles])
 	{
-		scrollToOffset = boundWidth;
+		[self.canvasControlDelegate canvasViewDidScrollToLastPage:self];
+//		[(id) self.canvasControlDelegate performSelector:@selector(canvasViewDidScrollToLastPage:) withObject:self];
 	}
-	else if (xOffset < boundWidth)
+
+
+}
+
+- (void) pagedBackward
+{
+	self.page--;
+
+	CanvasPageView * oldViewCurrent = [self.currentPagePlaceholder.pageView retain];
+	CanvasPageView * oldViewNext = [self.nextPagePlaceholder.pageView retain];
+	CanvasPageView * oldViewPrevious = [self.previousPagePlaceholder.pageView retain];	
+	
+	[oldViewCurrent removeFromSuperview];
+	[oldViewNext removeFromSuperview];
+	[oldViewPrevious removeFromSuperview];
+	
+	self.currentPagePlaceholder.pageView = oldViewPrevious;
+	self.previousPagePlaceholder.pageView = oldViewNext;
+	self.nextPagePlaceholder.pageView = oldViewCurrent;	
+
+	[self.currentPagePlaceholder addSubview:self.currentPagePlaceholder.pageView];
+	[self.previousPagePlaceholder addSubview:self.previousPagePlaceholder.pageView];
+	[self.nextPagePlaceholder addSubview:self.nextPagePlaceholder.pageView];
+	
+	[self reconfigurePageViewIndexes];
+
+	[self.previousPagePlaceholder.pageView updateTilesWithDataSource:self.datasource];	
+//	[oldViewCurrent setNeedsDisplay];
+//	[oldViewNext setNeedsDisplay];
+//	[oldViewPrevious setNeedsDisplay];
+	
+	[oldViewCurrent release];
+	[oldViewNext release];
+	[oldViewPrevious release];	
+	
+	[self.canvasControlDelegate canvasViewDidScrollPrevious:self];
+}
+
+
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView;
+{
+    CGFloat pageWidth = self.frame.size.width;
+	CGFloat leftThreshold = (pageWidth * 0.6);
+	if (self.page <= 0 && self.contentOffset.x < leftThreshold)
 	{
-		scrollToOffset = 0;
+		[self setContentOffset:CGPointMake(leftThreshold, 0)];
 	}
-	else if (xOffset >= (boundWidth * 2))
+	else if (self.page <= 0 && self.contentOffset.x < pageWidth)
 	{
-		scrollToOffset = boundWidth * 2;
+		CGFloat scrollAlpha = 1. - (pageWidth - self.contentOffset.x) / (pageWidth - leftThreshold);
+		if (scrollAlpha > 0.98)
+		{
+			scrollAlpha = 1.;
+		}
+		else if (scrollAlpha < 0.2)
+		{
+			scrollAlpha = 0.2;
+		}
+		self.previousPagePlaceholder.pageView.alpha = scrollAlpha;
+	}
+}
+
+- (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    CGFloat pageWidth = self.frame.size.width;
+//	[self setContentOffset:CGPointMake(pageWidth, 0) animated:NO];
+	
+	int newPage = floor((self.contentOffset.x - pageWidth / 2) / pageWidth) + self.page;
+	if (newPage > self.page)
+	{
+		[self pagedForward];
+		[self setContentOffset:CGPointMake(pageWidth, 0)];
+	}
+	else if (newPage < self.page)
+	{
+		[self pagedBackward];
+		[self setContentOffset:CGPointMake(pageWidth, 0)];
 	}
 	else 
 	{
-		scrollToOffset = boundWidth;
+		[self setContentOffset:CGPointMake(pageWidth, 0) animated:YES];
 	}
-
-	
-	[self setContentOffset:CGPointMake(scrollToOffset,0) animated:YES];
-	
-//	
-//	CGFloat scrollRatio = (self.contentOffset.x / boundWidth);
-//	int snappingToPage;
-//	if (scrollRatio > 0.75)
-//	{
-//		snappingToPage = self.page + 1;
-//	}
-//	else if (scrollRatio < 0.25)
-//	{
-//		snappingToPage = self.page - 1;
-//	}
-//	else
-//	{
-//		snappingToPage = self.page;
-//	}
-//
-//	if (snappingToPage >= -1)
-//		self.page = snappingToPage;	
-//	else 
-//		self.page = -1;
-//
-//	self.contentOffset = CGPointMake((self.page + 1) * boundWidth, 0);
-//
-//	NSLog(@"Scroll Ratio: %f", scrollRatio);
-	
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+#pragma mark -
+#pragma mark Static Accessors for Subviews
+
++ (int) nColumns;
 {
-	[self snapToEdges];
+	return nColumns;
 }
 
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
++ (int) nRows;
 {
-	[self snapToEdges];
+	return nRows;
+}
+
++ (CGSize) pageMargin;
+{
+	return pageMargin;
+}
+
++ (CGSize) tileMargin;
+{
+	return tileMargin;
+}
+
++ (int) tilesPerPage;
+{
+	return tilesPerPage;
+}
+
++ (CGSize) tileSize;
+{
+	return tileSize;
+}
+
++ (CGRect) rectForTileAtIndex:(int) index;
+{
+	index = index % tilesPerPage;
+	int row = floor(index / nColumns);
+	int col = floor(index % nColumns);
+	CGFloat locY = (row + 1) * tileMargin.height + (row * tileSize.height);
+	CGFloat locX = (col + 1) * tileMargin.width + (col * tileSize.width);
+	return CGRectMake(locX, locY, tileSize.width, tileSize.height);
 }
 
 @end

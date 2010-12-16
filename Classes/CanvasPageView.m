@@ -7,21 +7,60 @@
 //
 
 #import "CanvasPageView.h"
-
+#import "CanvasTileView.h"
+#import "CanvasView.h"
 
 @implementation CanvasPageView
 
-@synthesize pageLabel;
+@synthesize pageIndex;
 
-- (id)initWithFrame:(CGRect)frame {
-    
+- (id)initWithFrame:(CGRect)frame 
+{
     self = [super initWithFrame:frame];
     if (self) 
 	{
         // Initialization code.
-		self.backgroundColor = [UIColor redColor];
+		self.backgroundColor = [UIColor grayColor];
+		self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     }
     return self;
+}
+
+
+- (void) updateTilesWithDataSource:(id<CanvasDataSourceProtocol>) datasource;
+{
+	int numPlaceholderTilesRequired = [CanvasView tilesPerPage];
+	
+	for (UIView * subview in self.subviews)
+	{
+		[subview removeFromSuperview];
+	}
+
+	if (self.pageIndex >= 0)
+	{
+		NSArray * pageTileDictionaries = [datasource tileDictionariesInRange:NSMakeRange([CanvasView tilesPerPage] * self.pageIndex, [CanvasView tilesPerPage])];
+		for (NSDictionary * tileDictionary in pageTileDictionaries)
+		{
+			int tileIndex = [[tileDictionary objectForKey:@"tileIndex"] intValue];
+			CanvasTileView * tileView = [[CanvasTileView alloc] initWithFrame:[CanvasView rectForTileAtIndex:tileIndex]];
+			tileView.tileDictionary = tileDictionary;
+			[self addSubview:tileView];
+			numPlaceholderTilesRequired--;
+		}
+	}
+	
+	// draw placeholders for missing tiles
+	for (int tileIndex=1; tileIndex <= numPlaceholderTilesRequired; tileIndex++)
+	{
+		NSLog(@"drawing placeholders : %d", tileIndex);
+		CanvasTileView * tileView = [[CanvasTileView alloc] initWithFrame:[CanvasView rectForTileAtIndex:[CanvasView tilesPerPage] - tileIndex]];
+		tileView.alpha = 0.2;
+		[self addSubview:tileView];
+	}
+	
+	
+	[self setNeedsDisplay];
+
 }
 
 
@@ -30,12 +69,11 @@
 - (void)drawRect:(CGRect)rect 
 {
     // Drawing code.
-	[self.pageLabel drawAtPoint:CGPointMake(0, 0) withFont:[UIFont systemFontOfSize:11]];
+	[[NSString stringWithFormat:@"%d",self.pageIndex] drawAtPoint:CGPointMake(0, 0) withFont:[UIFont systemFontOfSize:11]];
 }
 
 - (void)dealloc 
 {
-	self.pageLabel = nil;
     [super dealloc];
 }
 

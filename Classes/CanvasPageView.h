@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CanvasDataSourceProtocol.h"
 
 @interface CanvasPageView : UIView 
 {
-	NSString * pageLabel;
+	int pageIndex;
 }
 
-@property (nonatomic,assign) NSString * pageLabel;
+@property int pageIndex;
 
+- (void) updateTilesWithDataSource:(id<CanvasDataSourceProtocol>) datasource;
 @end
