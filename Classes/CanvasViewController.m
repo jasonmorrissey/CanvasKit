@@ -71,6 +71,7 @@
 	return YES;
 }
 
+
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
 	[super didRotateFromInterfaceOrientation:fromInterfaceOrientation];

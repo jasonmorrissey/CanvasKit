@@ -73,6 +73,7 @@ static CGSize pageMargin;
 
 - (void) resetDimensions
 {
+	[UIView beginAnimations:@"canvasDimensionChange" context:nil];
 	NSLog(@"reseting dimensions");
 	CGSize boundSize = self.bounds.size;
 
@@ -84,11 +85,16 @@ static CGSize pageMargin;
 	previousPagePlaceholder_.frame = CGRectMake(0, 0, boundSize.width, boundSize.height);
 	currentPagePlaceholder_.frame = CGRectMake(boundSize.width, 0, boundSize.width, boundSize.height);
 	nextPagePlaceholder_.frame = CGRectMake(boundSize.width * 2, 0, boundSize.width, boundSize.height);
-	
-	[self refreshTiles];
-	
+
+	[self refreshTiles];	
 	// set to offset to center page
 	[self setContentOffset:CGPointMake(boundSize.width, 0)];
+	
+	[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self cache:YES];
+//	[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+	[UIView setAnimationDuration:0.8];
+	[UIView commitAnimations];
+
 }
 
 - (void) initTileDimensionsForBoundsSize:(CGSize) boundsSize;
@@ -251,14 +257,12 @@ static CGSize pageMargin;
 			scrollAlpha = 0.2;
 		}
 		self.previousPagePlaceholder.pageView.alpha = scrollAlpha;
-	}
+	}	
 }
 
 - (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
+{	
     CGFloat pageWidth = self.frame.size.width;
-//	[self setContentOffset:CGPointMake(pageWidth, 0) animated:NO];
-	
 	int newPage = floor((self.contentOffset.x - pageWidth / 2) / pageWidth) + self.page;
 	if (newPage > self.page)
 	{

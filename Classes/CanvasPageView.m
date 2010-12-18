@@ -52,7 +52,6 @@
 	// draw placeholders for missing tiles
 	for (int tileIndex=1; tileIndex <= numPlaceholderTilesRequired; tileIndex++)
 	{
-		NSLog(@"drawing placeholders : %d", tileIndex);
 		CanvasTileView * tileView = [[CanvasTileView alloc] initWithFrame:[CanvasView rectForTileAtIndex:[CanvasView tilesPerPage] - tileIndex]];
 		tileView.alpha = 0.2;
 		[self addSubview:tileView];
