@@ -36,6 +36,7 @@
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		47A85E9C12BC7A0E008240BC /* CanvasKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasKit.h; sourceTree = "<group>"; };
 		47B6514F12B9B411009E1347 /* CanvasPagePlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasPagePlaceholder.h; sourceTree = "<group>"; };
 		47B6515012B9B411009E1347 /* CanvasPagePlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvasPagePlaceholder.m; sourceTree = "<group>"; };
 		47B6524212B9C5DD009E1347 /* CanvasDataSourceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasDataSourceProtocol.h; sourceTree = "<group>"; };
@@ -43,8 +44,8 @@
 		47B6527012B9C7D2009E1347 /* CanvasTileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvasTileView.m; sourceTree = "<group>"; };
 		47B6623512BA0BA4009E1347 /* CanvasViewDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasViewDelegateProtocol.h; sourceTree = "<group>"; };
 		888B970212B8CD3A00BFE101 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources-iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
-		888B970812B8CD6C00BFE101 /* CanvasView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CanvasView.h; path = ../CanvasView.h; sourceTree = "<group>"; };
-		888B970912B8CD6C00BFE101 /* CanvasView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CanvasView.m; path = ../CanvasView.m; sourceTree = "<group>"; };
+		888B970812B8CD6C00BFE101 /* CanvasView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasView.h; sourceTree = "<group>"; };
+		888B970912B8CD6C00BFE101 /* CanvasView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvasView.m; sourceTree = "<group>"; };
 		888B970C12B8CDC800BFE101 /* CanvasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasViewController.h; sourceTree = "<group>"; };
 		888B970D12B8CDC800BFE101 /* CanvasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvasViewController.m; sourceTree = "<group>"; };
 		888B973312B8D24500BFE101 /* CanvasPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasPageView.h; sourceTree = "<group>"; };
@@ -69,11 +70,11 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				888B970B12B8CD9700BFE101 /* Canvas */,
 				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
 				28C286E00D94DF7D0034E888 /* RootViewController.m */,
 				1D3623240D0F684500981E51 /* CanvasKitAppDelegate.h */,
 				1D3623250D0F684500981E51 /* CanvasKitAppDelegate.m */,
+				888B970B12B8CD9700BFE101 /* Canvas */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -151,8 +152,9 @@
 				47B6526F12B9C7D2009E1347 /* CanvasTileView.h */,
 				47B6527012B9C7D2009E1347 /* CanvasTileView.m */,
 				47B6623512BA0BA4009E1347 /* CanvasViewDelegateProtocol.h */,
+				47A85E9C12BC7A0E008240BC /* CanvasKit.h */,
 			);
-			name = Canvas;
+			path = Canvas;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
