@@ -36,26 +36,38 @@
 		[subview removeFromSuperview];
 	}
 
-	if (self.pageIndex >= 0)
+	long startIndex = [CanvasView tilesPerPage] * self.pageIndex;
+	NSLog(@"updating tiles for page: %d", self.pageIndex);
+	for (long tileIndex = startIndex; tileIndex < [CanvasView tilesPerPage] + startIndex; tileIndex++)
 	{
-		NSArray * pageTileDictionaries = [datasource tileDictionariesInRange:NSMakeRange([CanvasView tilesPerPage] * self.pageIndex, [CanvasView tilesPerPage])];
-		for (NSDictionary * tileDictionary in pageTileDictionaries)
+		CanvasTileView * tileView = [datasource tileViewForIndex:tileIndex];
+		if (tileView)
 		{
-			int tileIndex = [[tileDictionary objectForKey:@"tileIndex"] intValue];
-			CanvasTileView * tileView = [[CanvasTileView alloc] initWithFrame:[CanvasView rectForTileAtIndex:tileIndex]];
-			tileView.tileDictionary = tileDictionary;
 			[self addSubview:tileView];
 			numPlaceholderTilesRequired--;
 		}
 	}
 	
-	// draw placeholders for missing tiles
-	for (int tileIndex=1; tileIndex <= numPlaceholderTilesRequired; tileIndex++)
-	{
-		CanvasTileView * tileView = [[CanvasTileView alloc] initWithFrame:[CanvasView rectForTileAtIndex:[CanvasView tilesPerPage] - tileIndex]];
-		tileView.alpha = 0.2;
-		[self addSubview:tileView];
-	}
+//	if (self.pageIndex >= 0)
+//	{
+//		NSArray * pageTileDictionaries = [datasource tileDictionariesInRange:NSMakeRange([CanvasView tilesPerPage] * self.pageIndex, [CanvasView tilesPerPage])];
+//		for (NSDictionary * tileDictionary in pageTileDictionaries)
+//		{
+//			int tileIndex = [[tileDictionary objectForKey:@"tileIndex"] intValue];
+//			CanvasTileView * tileView = [[CanvasTileView alloc] initWithFrame:[CanvasView rectForTileAtIndex:tileIndex]];
+//			tileView.tileDictionary = tileDictionary;
+//			[self addSubview:tileView];
+//			numPlaceholderTilesRequired--;
+//		}
+//	}
+	
+// draw placeholders for missing tiles
+//	for (int tileIndex=1; tileIndex <= numPlaceholderTilesRequired; tileIndex++)
+//	{
+//		CanvasTileView * tileView = [[CanvasTileView alloc] initWithFrame:[CanvasView rectForTileAtIndex:[CanvasView tilesPerPage] - tileIndex]];
+//		tileView.alpha = 0.2;
+//		[self addSubview:tileView];
+//	}
 	
 	
 	[self setNeedsDisplay];

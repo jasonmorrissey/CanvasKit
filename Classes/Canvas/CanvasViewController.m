@@ -7,10 +7,11 @@
 //
 
 #import "CanvasViewController.h"
-
+#import "CanvasDataSourceProtocol.h"
 
 @interface CanvasViewController()
 - (void) addRandomTileDictionaries;
+- (CanvasView *) createCanvasViewWithDatasource:(id<CanvasDataSourceProtocol>) datasource;
 @end
 
 @implementation CanvasViewController
@@ -31,7 +32,7 @@
 
 - (void) addRandomTileDictionaries;
 {
-	for (int i=0; i<7; i++)
+	for (int i=0; i<4; i++)
 	{
 		int tileIndex = [self.tileDictionaries count];
 		NSDictionary * tileDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -48,7 +49,7 @@
 - (void)loadView 
 {
 	[super loadView];
-	canvasView_ = [[CanvasView alloc] initWithFrame:CGRectZero withDataSource:self];
+	canvasView_ = [self createCanvasViewWithDatasource:self];
 	canvasView_.canvasControlDelegate = self;
 	canvasView_.autoresizesSubviews = YES;
 	[self.view addSubview:canvasView_];
@@ -124,22 +125,27 @@
 #pragma mark -
 #pragma mark Canvas Data Source
 
-- (NSArray *) tileDictionariesInRange:(NSRange) range;
+//- (NSArray *) tileDictionariesInRange:(NSRange) range;
+//{
+//
+//	if (isnan(range.location) || isnan(range.length) || range.length == 0 || range.location < 0 || range.location >= [self.tileDictionaries count])
+//	{
+//		return nil;
+//	}
+//	
+//	if (range.location + range.length >= [self.tileDictionaries count])
+//	{
+//		range.length = [self.tileDictionaries count] - range.location;
+//	}
+//
+//	
+//	NSLog(@"Requested tiles: %d -> %d (of %d)", range.location, range.location + range.length, [self.tileDictionaries count]);	
+//	return [self.tileDictionaries subarrayWithRange:range];
+//}
+
+- (CanvasView *) createCanvasViewWithDatasource:(id<CanvasDataSourceProtocol>) datasource;
 {
-
-	if (isnan(range.location) || isnan(range.length) || range.length == 0 || range.location < 0 || range.location >= [self.tileDictionaries count])
-	{
-		return nil;
-	}
-	
-	if (range.location + range.length >= [self.tileDictionaries count])
-	{
-		range.length = [self.tileDictionaries count] - range.location;
-	}
-
-	
-	NSLog(@"Requested tiles: %d -> %d (of %d)", range.location, range.location + range.length, [self.tileDictionaries count]);	
-	return [self.tileDictionaries subarrayWithRange:range];
+	return [[CanvasView alloc] initWithFrame:CGRectZero withDataSource:self];
 }
 
 - (long) totalNumberOfTiles
@@ -155,6 +161,20 @@
 - (CGSize) tileDimensions;
 {
 	return CGSizeMake(120., 100.);
+}
+
+- (CanvasTileView *) tileViewForIndex:(long) tileIndex;
+{
+	CanvasTileView * tileView = [[CanvasTileView alloc] initWithFrame:[CanvasView rectForTileAtIndex:tileIndex]];	
+	if (tileIndex >= 0 && tileIndex < [self.tileDictionaries count])
+	{
+		tileView.tileDictionary = [self.tileDictionaries objectAtIndex:tileIndex];
+	}
+	else 
+	{
+		tileView.alpha = 0.1;		
+	}
+	return tileView;
 }
 
 

@@ -20,7 +20,7 @@
     if (self) 
 	{
         // Initialization code.
-		self.backgroundColor = [UIColor darkGrayColor];
+		self.backgroundColor = [UIColor clearColor];
 		self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 		pageView_ = [[CanvasPageView alloc] init];
 		self.label = lbl;

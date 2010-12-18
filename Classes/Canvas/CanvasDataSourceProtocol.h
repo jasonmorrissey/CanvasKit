@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CanvasTileView.h"
 
 @protocol CanvasDataSourceProtocol
 
-- (NSMutableArray *) tileDictionariesInRange:(NSRange) range;
+- (CanvasTileView *) tileViewForIndex:(long) tileIndex;
+//- (NSMutableArray *) tileDictionariesInRange:(NSRange) range;
 - (long) totalNumberOfTiles;
 - (CGSize) tileDimensions;
 - (CGSize) pageMargin;

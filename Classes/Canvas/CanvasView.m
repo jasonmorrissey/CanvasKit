@@ -41,7 +41,6 @@ static CGSize pageMargin;
 	{
 		self.delegate = self;
 		self.datasource = datasource;
-		self.backgroundColor = [UIColor blackColor];
 		self.pagingEnabled = YES;
 		self.showsVerticalScrollIndicator = NO;
 		self.showsHorizontalScrollIndicator = NO;
@@ -252,9 +251,9 @@ static CGSize pageMargin;
 		{
 			scrollAlpha = 1.;
 		}
-		else if (scrollAlpha < 0.2)
+		else if (scrollAlpha < 0.4)
 		{
-			scrollAlpha = 0.2;
+			scrollAlpha = 0.4;
 		}
 		self.previousPagePlaceholder.pageView.alpha = scrollAlpha;
 	}	
