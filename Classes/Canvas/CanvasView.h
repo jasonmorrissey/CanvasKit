@@ -37,6 +37,7 @@
 - (id)initWithFrame:(CGRect)frame withDataSource:(id<CanvasDataSourceProtocol>) datasource;
 - (void) refreshTiles;
 - (void) resetDimensions;
+- (void) scrollToTileAtIndex:(long) tileIndex;
 
 // static accessors for subviews
 + (int) nColumns;

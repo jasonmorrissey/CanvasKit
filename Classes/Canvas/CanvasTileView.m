@@ -7,11 +7,22 @@
 //
 
 #import "CanvasTileView.h"
+#import "CanvasViewDelegateProtocol.h"
+#import "CanvasView.h"
+
+@interface CanvasTileView()
+
+- (id<CanvasViewDelegateProtocol>) canvasControlDelegate;
+
+@end
 
 
 @implementation CanvasTileView
 
 @synthesize tileDictionary = tileDictionary_;
+@synthesize highlighted = highlighted_;
+@synthesize selected = selected_;
+@synthesize tileIndex = tileIndex_;
 
 - (id)initWithFrame:(CGRect)frame {
     
@@ -22,13 +33,65 @@
     return self;
 }
 
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	[super touchesBegan:touches withEvent:event];
+	self.highlighted = YES;	
+}
+
+- (void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	[super touchesMoved:touches withEvent:event];
+	self.highlighted = NO;
+}
+
+- (void) touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	[super touchesCancelled:touches withEvent:event];	
+	self.highlighted = NO;
+}
+
+- (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	[super touchesEnded:touches withEvent:event];
+	self.highlighted = NO;
+	self.selected = !self.selected;
+	
+	[[self canvasControlDelegate] canvasViewDidTapTileView:self];
+}
+
+- (void) setSelected:(BOOL) isSelected
+{
+	selected_ = isSelected;
+	[self setNeedsDisplay];
+}
+
+- (void) setHighlighted:(BOOL) isHighlighted
+{
+	highlighted_ = isHighlighted;
+	[self setNeedsDisplay];
+}
+
+- (id<CanvasViewDelegateProtocol>) canvasControlDelegate;
+{
+	CanvasView * canvasView = (CanvasView *) [[[self superview] superview] superview];
+	return canvasView.canvasControlDelegate;
+}
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
     // Drawing code.
 	NSString * ident = [self.tileDictionary objectForKey:@"ident"];
-	[ident drawAtPoint:CGPointMake(5, 5) withFont:[UIFont boldSystemFontOfSize:10]];
+	if (self.highlighted)
+	{
+		[ident drawAtPoint:CGPointMake(5, 5) withFont:[UIFont boldSystemFontOfSize:10]];
+	}
+	else 
+	{
+		[ident drawAtPoint:CGPointMake(5, 5) withFont:[UIFont systemFontOfSize:10]];		
+	}
+
 }
 
 

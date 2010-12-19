@@ -73,13 +73,6 @@
 }
 
 
-- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-	[super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-	[self.canvasView setNeedsLayout];			
-}
-
-
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -120,6 +113,12 @@
 	[self addRandomTileDictionaries];
 	[canvasView refreshTiles];
 }
+
+- (void) canvasViewDidTapTileView:(CanvasTileView *) canvasTileView;
+{
+	NSLog(@"canvasViewDidTapTileView in()");	
+}
+
 
 
 #pragma mark -

@@ -16,5 +16,5 @@
 
 @property int pageIndex;
 
-- (void) updateTilesWithDataSource:(id<CanvasDataSourceProtocol>) datasource;
+- (void) updateTiles;
 @end

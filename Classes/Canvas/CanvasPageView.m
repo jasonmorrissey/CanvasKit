@@ -27,8 +27,11 @@
 }
 
 
-- (void) updateTilesWithDataSource:(id<CanvasDataSourceProtocol>) datasource;
+- (void) updateTiles;
 {
+	CanvasView * canvasView = (CanvasView *) [[self superview] superview];
+	
+	
 	int numPlaceholderTilesRequired = [CanvasView tilesPerPage];
 	
 	for (UIView * subview in self.subviews)
@@ -40,9 +43,10 @@
 	NSLog(@"updating tiles for page: %d", self.pageIndex);
 	for (long tileIndex = startIndex; tileIndex < [CanvasView tilesPerPage] + startIndex; tileIndex++)
 	{
-		CanvasTileView * tileView = [datasource tileViewForIndex:tileIndex];
+		CanvasTileView * tileView = [canvasView.datasource tileViewForIndex:tileIndex];
 		if (tileView)
 		{
+			tileView.tileIndex = tileIndex;
 			[self addSubview:tileView];
 			numPlaceholderTilesRequired--;
 		}

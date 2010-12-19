@@ -57,11 +57,25 @@ static CGSize pageMargin;
 		[self addSubview:previousPagePlaceholder_];
 		[self addSubview:currentPagePlaceholder_];
 		[self addSubview:nextPagePlaceholder_];
-
 		[self resetDimensions];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:UIDeviceOrientationDidChangeNotification object:nil];
 		
     }
     return self;
+}
+
+-(void)didRotate:(NSNotification *)nsn_notification 
+{
+	[self setNeedsLayout];
+//    UIInterfaceOrientation interfaceOrientation = [[UIDevice currentDevice] orientation];
+    /*Rotation Code
+	 if(interfaceOrientation == UIInterfaceOrientationPortrait) {
+	 //Portrait setup
+	 } else if(interfaceOrientation == UIInterfaceOrientationLandscapeRight) {
+	 //Landscape setup
+	 }
+	 
+	 */
 }
 
 - (void) setNeedsLayout
@@ -113,12 +127,12 @@ static CGSize pageMargin;
 
 - (void) layoutSubviews
 {
+	[super layoutSubviews];	
 	if (!areDimensionsUpdated_)
 	{
 		[self resetDimensions];
 		areDimensionsUpdated_ = YES;
 	}
-	[super layoutSubviews];
 }
 
 /*
@@ -130,6 +144,7 @@ static CGSize pageMargin;
 */
 
 - (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	self.previousPagePlaceholder = nil;
 	self.currentPagePlaceholder = nil;
 	self.nextPagePlaceholder = nil;
@@ -151,9 +166,9 @@ static CGSize pageMargin;
 - (void) refreshTiles;
 {
 	[self reconfigurePageViewIndexes];
-	[self.currentPagePlaceholder.pageView updateTilesWithDataSource:self.datasource];
-	[self.nextPagePlaceholder.pageView updateTilesWithDataSource:self.datasource];
-	[self.previousPagePlaceholder.pageView updateTilesWithDataSource:self.datasource];
+	[self.currentPagePlaceholder.pageView updateTiles];
+	[self.nextPagePlaceholder.pageView updateTiles];
+	[self.previousPagePlaceholder.pageView updateTiles];
 }
 
 - (void) reconfigurePageViewIndexes;
@@ -185,7 +200,7 @@ static CGSize pageMargin;
 	
 	[self reconfigurePageViewIndexes];	
 	
-	[self.nextPagePlaceholder.pageView updateTilesWithDataSource:self.datasource];
+	[self.nextPagePlaceholder.pageView updateTiles];
 
 	[oldViewCurrent release];
 	[oldViewNext release];
@@ -195,9 +210,7 @@ static CGSize pageMargin;
 	if ((self.page + 1) * tilesPerPage >= [self.datasource totalNumberOfTiles])
 	{
 		[self.canvasControlDelegate canvasViewDidScrollToLastPage:self];
-//		[(id) self.canvasControlDelegate performSelector:@selector(canvasViewDidScrollToLastPage:) withObject:self];
 	}
-
 
 }
 
@@ -223,7 +236,7 @@ static CGSize pageMargin;
 	
 	[self reconfigurePageViewIndexes];
 
-	[self.previousPagePlaceholder.pageView updateTilesWithDataSource:self.datasource];	
+	[self.previousPagePlaceholder.pageView updateTiles];
 //	[oldViewCurrent setNeedsDisplay];
 //	[oldViewNext setNeedsDisplay];
 //	[oldViewPrevious setNeedsDisplay];
@@ -277,6 +290,12 @@ static CGSize pageMargin;
 	{
 		[self setContentOffset:CGPointMake(pageWidth, 0) animated:YES];
 	}
+}
+
+- (void) scrollToTileAtIndex:(long) tileIndex
+{
+	self.page = floor(tileIndex / tilesPerPage);
+	[self refreshTiles];
 }
 
 #pragma mark -
