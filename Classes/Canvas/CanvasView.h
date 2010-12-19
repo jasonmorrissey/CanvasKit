@@ -14,16 +14,17 @@
 
 @interface CanvasView : UIScrollView <UIScrollViewDelegate>
 {
-	CanvasPagePlaceholder * previousPagePlaceholder_;
-	CanvasPagePlaceholder * currentPagePlaceholder_;
-	CanvasPagePlaceholder * nextPagePlaceholder_;
+	@public	
 	id<CanvasDataSourceProtocol> datasource_;
 	id<CanvasViewDelegateProtocol> canvasControlDelegate_;
 	
-	// index of currentPage
+	@private	
 	int page;
-	
 	bool areDimensionsUpdated_;
+	CanvasPagePlaceholder * previousPagePlaceholder_;
+	CanvasPagePlaceholder * currentPagePlaceholder_;
+	CanvasPagePlaceholder * nextPagePlaceholder_;
+	
 }
 
 @property int page;

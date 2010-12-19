@@ -51,9 +51,9 @@
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-	[self.label drawAtPoint:CGPointMake(0, 0) withFont:[UIFont systemFontOfSize:11]];
-}
+//- (void)drawRect:(CGRect)rect {
+//	[self.label drawAtPoint:CGPointMake(0, 0) withFont:[UIFont systemFontOfSize:11]];
+//}
 
 - (void)dealloc {
 	self.pageView = nil;

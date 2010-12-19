@@ -20,7 +20,7 @@
     if (self) 
 	{
         // Initialization code.
-		self.backgroundColor = [UIColor grayColor];
+		self.backgroundColor = [UIColor clearColor];
 		self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     }
     return self;
@@ -30,7 +30,6 @@
 - (void) updateTiles;
 {
 	CanvasView * canvasView = (CanvasView *) [[self superview] superview];
-	
 	
 	int numPlaceholderTilesRequired = [CanvasView tilesPerPage];
 	
@@ -84,7 +83,7 @@
 - (void)drawRect:(CGRect)rect 
 {
     // Drawing code.
-	[[NSString stringWithFormat:@"%d",self.pageIndex] drawAtPoint:CGPointMake(0, 0) withFont:[UIFont systemFontOfSize:11]];
+//	[[NSString stringWithFormat:@"%d",self.pageIndex] drawAtPoint:CGPointMake(0, 0) withFont:[UIFont systemFontOfSize:11]];
 }
 
 - (void)dealloc 
