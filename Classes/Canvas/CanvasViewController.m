@@ -25,7 +25,7 @@
     if (self) 
 	{
 		tileDictionaries_ = [[NSMutableArray alloc] init];
-		[self addRandomTileDictionaries];
+//		[self addRandomTileDictionaries];
     }
     return self;
 }
@@ -64,6 +64,12 @@
 }
 */
 
+- (void) viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	[canvasView_ resetDimensions];
+}
+	 
 
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

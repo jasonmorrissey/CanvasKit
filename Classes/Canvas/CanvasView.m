@@ -50,9 +50,9 @@ static CGSize pageMargin;
 		self.page = 0;
 		areDimensionsUpdated_ = NO;
 		
-		previousPagePlaceholder_ = [[[CanvasPagePlaceholder alloc] initWithFrame:frame withLabel:@"Left"] autorelease];
-		currentPagePlaceholder_ = [[[CanvasPagePlaceholder alloc] initWithFrame:frame withLabel:@"Center"] autorelease];
-		nextPagePlaceholder_ = [[[CanvasPagePlaceholder alloc] initWithFrame:frame withLabel:@"Right"] autorelease];
+		previousPagePlaceholder_ = [[CanvasPagePlaceholder alloc] initWithFrame:frame withLabel:@"Left"];
+		currentPagePlaceholder_ = [[CanvasPagePlaceholder alloc] initWithFrame:frame withLabel:@"Center"];
+		nextPagePlaceholder_ = [[CanvasPagePlaceholder alloc] initWithFrame:frame withLabel:@"Right"];
 		
 		[self addSubview:previousPagePlaceholder_];
 		[self addSubview:currentPagePlaceholder_];
@@ -206,7 +206,7 @@ static CGSize pageMargin;
 	[oldViewPrevious release];
 	[self.canvasControlDelegate canvasViewDidScrollNext:self];
 	
-	if ((self.page + 1) * tilesPerPage >= [self.datasource totalNumberOfTiles])
+	if ((self.page + 2) * tilesPerPage >= [self.datasource totalNumberOfTiles])
 	{
 		[self.canvasControlDelegate canvasViewDidScrollToLastPage:self];
 	}
@@ -251,10 +251,10 @@ static CGSize pageMargin;
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView;
 {
     CGFloat pageWidth = self.frame.size.width;
-	CGFloat leftThreshold = (pageWidth * 0.6);
+	CGFloat leftThreshold = (pageWidth * 0.6);	
 	if (self.page <= 0 && self.contentOffset.x < leftThreshold)
 	{
-		[self setContentOffset:CGPointMake(leftThreshold, 0)];
+		self.contentOffset = CGPointMake(leftThreshold + 1, 0);
 	}
 	else if (self.page <= 0 && self.contentOffset.x < pageWidth)
 	{
