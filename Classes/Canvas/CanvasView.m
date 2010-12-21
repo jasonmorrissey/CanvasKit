@@ -50,9 +50,9 @@ static CGSize pageMargin;
 		self.page = 0;
 		areDimensionsUpdated_ = NO;
 		
-		previousPagePlaceholder_ = [[CanvasPagePlaceholder alloc] initWithFrame:frame withLabel:@"Left"];
-		currentPagePlaceholder_ = [[CanvasPagePlaceholder alloc] initWithFrame:frame withLabel:@"Center"];
-		nextPagePlaceholder_ = [[CanvasPagePlaceholder alloc] initWithFrame:frame withLabel:@"Right"];
+		previousPagePlaceholder_ = [[[CanvasPagePlaceholder alloc] initWithFrame:frame withLabel:@"Left"] autorelease];
+		currentPagePlaceholder_ = [[[CanvasPagePlaceholder alloc] initWithFrame:frame withLabel:@"Center"] autorelease];
+		nextPagePlaceholder_ = [[[CanvasPagePlaceholder alloc] initWithFrame:frame withLabel:@"Right"] autorelease];
 		
 		[self addSubview:previousPagePlaceholder_];
 		[self addSubview:currentPagePlaceholder_];
@@ -66,7 +66,13 @@ static CGSize pageMargin;
 
 -(void)didRotate:(NSNotification *)nsn_notification 
 {
-	[self setNeedsLayout];
+	[UIView beginAnimations:@"canvasDimensionChange" context:self];
+	[self resetDimensions];
+	[UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.superview cache:YES];
+	[UIView setAnimationDuration:1.];
+	[UIView commitAnimations];
+	
+//	[self setNeedsLayout];
 //    UIInterfaceOrientation interfaceOrientation = [[UIDevice currentDevice] orientation];
     /*Rotation Code
 	 if(interfaceOrientation == UIInterfaceOrientationPortrait) {
@@ -86,7 +92,6 @@ static CGSize pageMargin;
 
 - (void) resetDimensions
 {
-	[UIView beginAnimations:@"canvasDimensionChange" context:nil];
 	NSLog(@"reseting dimensions");
 	CGSize boundSize = self.bounds.size;
 
@@ -102,12 +107,6 @@ static CGSize pageMargin;
 	[self refreshTiles];	
 	// set to offset to center page
 	[self setContentOffset:CGPointMake(boundSize.width, 0)];
-	
-	[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self cache:YES];
-//	[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-	[UIView setAnimationDuration:0.8];
-	[UIView commitAnimations];
-
 }
 
 - (void) initTileDimensionsForBoundsSize:(CGSize) boundsSize;

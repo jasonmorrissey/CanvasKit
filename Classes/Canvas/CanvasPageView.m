@@ -88,6 +88,7 @@
 
 - (void)dealloc 
 {
+	NSLog(@"PageView dealloc in()");
     [super dealloc];
 }
 

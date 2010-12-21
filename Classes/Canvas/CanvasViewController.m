@@ -164,7 +164,7 @@
 
 - (CanvasTileView *) tileViewForIndex:(long) tileIndex;
 {
-	CanvasTileView * tileView = [[CanvasTileView alloc] initWithFrame:[CanvasView rectForTileAtIndex:tileIndex]];	
+	CanvasTileView * tileView = [[[CanvasTileView alloc] initWithFrame:[CanvasView rectForTileAtIndex:tileIndex]] autorelease];	
 	if (tileIndex >= 0 && tileIndex < [self.tileDictionaries count])
 	{
 		tileView.tileDictionary = [self.tileDictionaries objectAtIndex:tileIndex];
