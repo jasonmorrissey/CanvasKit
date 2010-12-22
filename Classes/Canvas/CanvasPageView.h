@@ -17,4 +17,5 @@
 @property int pageIndex;
 
 - (void) updateTiles;
+- (BOOL) isOnscreen;
 @end

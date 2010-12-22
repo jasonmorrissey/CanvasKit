@@ -90,12 +90,17 @@ static CGSize pageMargin;
 	areDimensionsUpdated_ = NO;
 }
 
+- (void) recalculateTileDimensions;
+{
+	[self initTileDimensionsForBoundsSize:self.bounds.size];	
+}
+
 - (void) resetDimensions
 {
 	NSLog(@"reseting dimensions");
 	CGSize boundSize = self.bounds.size;
-
-	[self initTileDimensionsForBoundsSize:boundSize];
+	
+	[self recalculateTileDimensions];
 	
 	// create enough scroll space for 3 page panels (prev, current, next)
 	self.contentSize = CGSizeMake(boundSize.width * 3, boundSize.height);
@@ -104,7 +109,7 @@ static CGSize pageMargin;
 	currentPagePlaceholder_.frame = CGRectMake(boundSize.width, 0, boundSize.width, boundSize.height);
 	nextPagePlaceholder_.frame = CGRectMake(boundSize.width * 2, 0, boundSize.width, boundSize.height);
 
-	[self refreshTiles];	
+	[self refreshTiles];
 	// set to offset to center page
 	[self setContentOffset:CGPointMake(boundSize.width, 0)];
 }
@@ -198,7 +203,8 @@ static CGSize pageMargin;
 	[self.nextPagePlaceholder addSubview:self.nextPagePlaceholder.pageView];
 	
 	[self reconfigurePageViewIndexes];	
-	
+
+	[self.currentPagePlaceholder.pageView updateTiles];
 	[self.nextPagePlaceholder.pageView updateTiles];
 
 	[oldViewCurrent release];
@@ -208,7 +214,7 @@ static CGSize pageMargin;
 	
 	if ((self.page + 2) * tilesPerPage >= [self.datasource totalNumberOfTiles])
 	{
-		[self.canvasControlDelegate canvasViewDidScrollToLastPage:self];
+//		[self.canvasControlDelegate canvasViewDidScrollToLastPage:self];
 	}
 
 }
@@ -235,6 +241,7 @@ static CGSize pageMargin;
 	
 	[self reconfigurePageViewIndexes];
 
+	[self.currentPagePlaceholder.pageView updateTiles];
 	[self.previousPagePlaceholder.pageView updateTiles];
 //	[oldViewCurrent setNeedsDisplay];
 //	[oldViewNext setNeedsDisplay];

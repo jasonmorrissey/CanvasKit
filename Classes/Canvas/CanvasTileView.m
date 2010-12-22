@@ -57,7 +57,7 @@
 	self.highlighted = NO;
 	self.selected = !self.selected;
 	
-	[[self canvasControlDelegate] canvasViewDidTapTileView:self];
+	[(id)[self canvasControlDelegate] performSelector:@selector(canvasViewDidTapTileView:) withObject:self];
 }
 
 - (void) setSelected:(BOOL) isSelected
@@ -93,6 +93,13 @@
 	}
 
 }
+
+- (BOOL) isOnscreen
+{
+	CanvasPageView * canvasPageView = (CanvasPageView *) [self superview];
+	return [canvasPageView isOnscreen];
+}
+
 
 
 - (void)dealloc {

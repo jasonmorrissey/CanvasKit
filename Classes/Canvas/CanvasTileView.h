@@ -20,4 +20,6 @@
 @property BOOL selected;
 @property long tileIndex;
 
+- (BOOL) isOnscreen;
+
 @end

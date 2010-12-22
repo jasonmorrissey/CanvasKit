@@ -39,6 +39,8 @@
 - (void) refreshTiles;
 - (void) resetDimensions;
 - (void) scrollToTileAtIndex:(long) tileIndex;
+- (void) recalculateTileDimensions;
+
 
 // static accessors for subviews
 + (int) nColumns;
