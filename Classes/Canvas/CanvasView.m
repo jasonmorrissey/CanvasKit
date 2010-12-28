@@ -203,7 +203,7 @@ static CGSize pageMargin;
 	
 	if ((self.page + 2) * tilesPerPage >= [self.datasource totalNumberOfTiles])
 	{
-//		[self.canvasControlDelegate canvasViewDidScrollToLastPage:self];
+		[self.canvasControlDelegate canvasViewDidScrollToLastPage:self];
 	}
 
 }
