@@ -86,7 +86,7 @@ static CGSize pageMargin;
 
 - (void) resetDimensions
 {
-	NSLog(@"reseting dimensions");
+//	NSLog(@"reseting dimensions");
 	CGSize boundSize = self.bounds.size;
 	
 	[self recalculateTileDimensions];
@@ -115,7 +115,7 @@ static CGSize pageMargin;
 	CGFloat marginVertical = (boundsSize.height - nRows * tileSize.height) / (nRows + 1);
 	tileMargin = CGSizeMake(marginHorizontal, marginVertical);
 	tilesPerPage = nColumns * nRows;
-	NSLog(@"Cols: %d \t Rows: %d \t Tiles: %d", nColumns, nRows, tilesPerPage);	
+//	NSLog(@"Cols: %d \t Rows: %d \t Tiles: %d", nColumns, nRows, tilesPerPage);	
 }
 
 - (void) layoutSubviews
