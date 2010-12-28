@@ -66,22 +66,11 @@ static CGSize pageMargin;
 
 -(void)didRotate:(NSNotification *)nsn_notification 
 {
-	[UIView beginAnimations:@"canvasDimensionChange" context:self];
-	[self resetDimensions];
-	[UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.superview cache:YES];
-	[UIView setAnimationDuration:1.];
-	[UIView commitAnimations];
-	
-//	[self setNeedsLayout];
-//    UIInterfaceOrientation interfaceOrientation = [[UIDevice currentDevice] orientation];
-    /*Rotation Code
-	 if(interfaceOrientation == UIInterfaceOrientationPortrait) {
-	 //Portrait setup
-	 } else if(interfaceOrientation == UIInterfaceOrientationLandscapeRight) {
-	 //Landscape setup
-	 }
-	 
-	 */
+//	[UIView beginAnimations:@"canvasDimensionChange" context:self];
+//	[self resetDimensions];
+//	[UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.superview cache:YES];
+//	[UIView setAnimationDuration:1.];
+//	[UIView commitAnimations];	
 }
 
 - (void) setNeedsLayout
