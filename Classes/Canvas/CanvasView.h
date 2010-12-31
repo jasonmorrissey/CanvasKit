@@ -21,6 +21,7 @@
 	@private	
 	int page;
 	bool areDimensionsUpdated_;
+	bool isVerticalScrolling_;
 	CanvasPagePlaceholder * previousPagePlaceholder_;
 	CanvasPagePlaceholder * currentPagePlaceholder_;
 	CanvasPagePlaceholder * nextPagePlaceholder_;
@@ -28,6 +29,7 @@
 }
 
 @property int page;
+@property bool isVerticalScrolling;
 @property (nonatomic,retain) CanvasPagePlaceholder * previousPagePlaceholder;
 @property (nonatomic,retain) CanvasPagePlaceholder * currentPagePlaceholder;
 @property (nonatomic,retain) CanvasPagePlaceholder * nextPagePlaceholder;

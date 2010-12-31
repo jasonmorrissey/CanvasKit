@@ -54,7 +54,6 @@
 	canvasView_.autoresizesSubviews = YES;
 	[self.view addSubview:canvasView_];
 	canvasView_.frame = self.view.bounds;
-
 }
 
 /*

@@ -24,7 +24,9 @@
 @synthesize nextPagePlaceholder = nextPagePlaceholder_;
 @synthesize datasource = datasource_;
 @synthesize canvasControlDelegate = canvasControlDelegate_;
+@synthesize isVerticalScrolling = isVerticalScrolling_;
 @synthesize page;
+
 
 static int nColumns;
 static int nRows;
@@ -48,6 +50,7 @@ static CGSize pageMargin;
 		self.autoresizesSubviews = YES;
 		self.contentMode = UIViewContentModeScaleAspectFill;
 		self.page = 0;
+//		self.isVerticalScrolling = YES;
 		areDimensionsUpdated_ = NO;
 		
 		previousPagePlaceholder_ = [[CanvasPagePlaceholder alloc] initWithFrame:frame withLabel:@"Left"];
@@ -84,6 +87,18 @@ static CGSize pageMargin;
 	[self initTileDimensionsForBoundsSize:self.bounds.size];	
 }
 
+- (void) snapToCenterPageAnimated:(BOOL) animated;
+{
+	if (self.isVerticalScrolling)
+	{
+		[self setContentOffset:CGPointMake(0, self.bounds.size.height) animated:animated];
+	}
+	else 
+	{
+		[self setContentOffset:CGPointMake(self.bounds.size.width, 0) animated:animated];
+	}
+}
+
 - (void) resetDimensions
 {
 //	NSLog(@"reseting dimensions");
@@ -92,15 +107,25 @@ static CGSize pageMargin;
 	[self recalculateTileDimensions];
 	
 	// create enough scroll space for 3 page panels (prev, current, next)
-	self.contentSize = CGSizeMake(boundSize.width * 3, boundSize.height);
 	
-	previousPagePlaceholder_.frame = CGRectMake(0, 0, boundSize.width, boundSize.height);
-	currentPagePlaceholder_.frame = CGRectMake(boundSize.width, 0, boundSize.width, boundSize.height);
-	nextPagePlaceholder_.frame = CGRectMake(boundSize.width * 2, 0, boundSize.width, boundSize.height);
+	if (self.isVerticalScrolling)
+	{
+		self.contentSize = CGSizeMake(boundSize.width, boundSize.height * 3);
+		previousPagePlaceholder_.frame = CGRectMake(0, 0, boundSize.width, boundSize.height);
+		currentPagePlaceholder_.frame = CGRectMake(0, boundSize.height, boundSize.width, boundSize.height);
+		nextPagePlaceholder_.frame = CGRectMake(0, boundSize.height * 2, boundSize.width, boundSize.height);
+	}
+	else 
+	{
+		self.contentSize = CGSizeMake(boundSize.width * 3, boundSize.height);	
+		previousPagePlaceholder_.frame = CGRectMake(0, 0, boundSize.width, boundSize.height);
+		currentPagePlaceholder_.frame = CGRectMake(boundSize.width, 0, boundSize.width, boundSize.height);
+		nextPagePlaceholder_.frame = CGRectMake(boundSize.width * 2, 0, boundSize.width, boundSize.height);
+	}
 
 	[self refreshTiles];
 	// set to offset to center page
-	[self setContentOffset:CGPointMake(boundSize.width, 0)];
+	[self snapToCenterPageAnimated:NO];
 }
 
 - (void) initTileDimensionsForBoundsSize:(CGSize) boundsSize;
@@ -243,8 +268,7 @@ static CGSize pageMargin;
 	[self.canvasControlDelegate canvasViewDidScrollPrevious:self];
 }
 
-
-- (void) scrollViewDidScroll:(UIScrollView *)scrollView;
+- (void) limitHorizontalScroll
 {
     CGFloat pageWidth = self.frame.size.width;
 	CGFloat leftThreshold = (pageWidth * 0.6);	
@@ -267,23 +291,63 @@ static CGSize pageMargin;
 	}	
 }
 
+- (void) limitVerticalScroll
+{
+    CGFloat pageHeight = self.frame.size.height;
+	CGFloat topThreshold = (pageHeight * 0.6);	
+	if (self.page <= 0 && self.contentOffset.y < topThreshold)
+	{
+		self.contentOffset = CGPointMake(0, topThreshold + 1);
+	}
+	else if (self.page <= 0 && self.contentOffset.y < pageHeight)
+	{
+		CGFloat scrollAlpha = 1. - (pageHeight - self.contentOffset.y) / (pageHeight - topThreshold);
+		if (scrollAlpha > 0.98)
+		{
+			scrollAlpha = 1.;
+		}
+		else if (scrollAlpha < 0.4)
+		{
+			scrollAlpha = 0.4;
+		}
+		self.previousPagePlaceholder.pageView.alpha = scrollAlpha;
+	}	
+}
+
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView;
+{
+	if (self.isVerticalScrolling)
+		[self limitVerticalScroll];
+	else
+		[self limitHorizontalScroll];
+}
+
 - (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {	
-    CGFloat pageWidth = self.frame.size.width;
-	int newPage = floor((self.contentOffset.x - pageWidth / 2) / pageWidth) + self.page;
+	int newPage;
+	if (self.isVerticalScrolling)
+	{
+		CGFloat pageHeight = self.frame.size.height;
+		newPage = floor((self.contentOffset.y - pageHeight / 2) / pageHeight) + self.page;
+	}
+	else
+	{
+		CGFloat pageWidth = self.frame.size.width;
+		newPage = floor((self.contentOffset.x - pageWidth / 2) / pageWidth) + self.page;
+	}
 	if (newPage > self.page)
 	{
 		[self pagedForward];
-		[self setContentOffset:CGPointMake(pageWidth, 0)];
+		[self snapToCenterPageAnimated:NO];
 	}
 	else if (newPage < self.page)
 	{
 		[self pagedBackward];
-		[self setContentOffset:CGPointMake(pageWidth, 0)];
+		[self snapToCenterPageAnimated:NO];
 	}
 	else 
 	{
-		[self setContentOffset:CGPointMake(pageWidth, 0) animated:YES];
+		[self snapToCenterPageAnimated:YES];
 	}
 }
 
