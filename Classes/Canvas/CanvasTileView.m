@@ -7,13 +7,9 @@
 //
 
 #import "CanvasTileView.h"
-#import "CanvasViewDelegateProtocol.h"
 #import "CanvasView.h"
 
 @interface CanvasTileView()
-
-- (id<CanvasViewDelegateProtocol>) canvasControlDelegate;
-
 @end
 
 

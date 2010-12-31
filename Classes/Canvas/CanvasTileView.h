@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CanvasViewDelegateProtocol.h"
 
 @interface CanvasTileView : UIView {
 	NSDictionary * tileDictionary_;
@@ -21,5 +22,6 @@
 @property long tileIndex;
 
 - (BOOL) isOnscreen;
+- (id<CanvasViewDelegateProtocol>) canvasControlDelegate;
 
 @end
