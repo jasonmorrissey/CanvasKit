@@ -25,7 +25,6 @@
 	CanvasPagePlaceholder * previousPagePlaceholder_;
 	CanvasPagePlaceholder * currentPagePlaceholder_;
 	CanvasPagePlaceholder * nextPagePlaceholder_;
-	
 }
 
 @property int page;
@@ -42,7 +41,7 @@
 - (void) resetDimensions;
 - (void) scrollToTileAtIndex:(long) tileIndex;
 - (void) recalculateTileDimensions;
-
+- (long) firstTileAtCurrentPage;
 
 // static accessors for subviews
 + (int) nColumns;

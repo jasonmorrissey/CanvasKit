@@ -32,7 +32,7 @@
 
 - (void) addRandomTileDictionaries;
 {
-	for (int i=0; i<4; i++)
+	for (int i=0; i<25; i++)
 	{
 		int tileIndex = [self.tileDictionaries count];
 		NSDictionary * tileDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -48,6 +48,7 @@
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView 
 {
+	NSLog(@"[- - - - ] CanvasViewController loadView in()");
 	[super loadView];
 	canvasView_ = [self createCanvasViewWithDatasource:self];
 	canvasView_.canvasControlDelegate = self;
@@ -65,8 +66,12 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
+//	NSLog(@"[- - - - ] CanvasViewController viewWillAppear in()");
 	[super viewWillAppear:animated];
+	long firstVisibleTile = [canvasView_ firstTileAtCurrentPage];
 	[canvasView_ resetDimensions];
+	[canvasView_ scrollToTileAtIndex:firstVisibleTile];
+	[canvasView_ setNeedsDisplay];
 }
 	 
 
@@ -86,18 +91,33 @@
 }
 
 - (void)viewDidUnload {
-    [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 	self.canvasView = nil;
+	self.view = nil;
+    [super viewDidUnload];
 }
 
 
 - (void)dealloc {
+//	NSLog(@"[ - - - - ] canvasViewController dealloc in()");
+	self.canvasView.canvasControlDelegate = nil;
 	self.canvasView = nil;
+	self.view = nil;
 	self.tileDictionaries = nil;
     [super dealloc];
 }
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+	[self viewWillAppear:YES];
+//	NSLog(@"Post View rotated");
+//	//	[self refreshSegmentControl];	
+//	
+//	//	[self positionSubredditPickFrameFromOrientation:fromInterfaceOrientation];
+//	[[self tableView] reloadRowsAtIndexPaths:[[self tableView] indexPathsForVisibleRows] withRowAnimation:UITableViewRowAnimationNone];	
+}
+
 
 #pragma mark -
 #pragma mark CanvasViewDelegate
@@ -164,7 +184,8 @@
 
 - (CGSize) tileDimensions;
 {
-	return CGSizeMake(120., 100.);
+//	return CGSizeMake(120., 100.);
+	return CGSizeMake(400., 200.);
 }
 
 - (CanvasTileView *) tileViewForIndex:(long) tileIndex;

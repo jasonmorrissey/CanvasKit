@@ -143,6 +143,11 @@ static CGSize pageMargin;
 //	NSLog(@"Cols: %d \t Rows: %d \t Tiles: %d", nColumns, nRows, tilesPerPage);	
 }
 
+- (long) firstTileAtCurrentPage;
+{
+	return self.page * tilesPerPage;
+}
+
 - (void) layoutSubviews
 {
 	[super layoutSubviews];	
@@ -162,6 +167,7 @@ static CGSize pageMargin;
 */
 
 - (void)dealloc {
+//	NSLog(@"[ - - - - ] canvasView dealloc in()");
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	self.previousPagePlaceholder = nil;
 	self.currentPagePlaceholder = nil;

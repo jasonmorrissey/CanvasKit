@@ -55,7 +55,9 @@
 //	[self.label drawAtPoint:CGPointMake(0, 0) withFont:[UIFont systemFontOfSize:11]];
 //}
 
-- (void)dealloc {
+- (void)dealloc 
+{
+//	NSLog(@"[ - - - - ] canvasPagePlaceholderView dealloc in()");
 	self.pageView = nil;
 	self.label = nil;
     [super dealloc];

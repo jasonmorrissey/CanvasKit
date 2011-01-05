@@ -69,7 +69,8 @@
 
 - (void)dealloc 
 {
-	NSLog(@"PageView dealloc in()");
+//	NSLog(@"[ - - - - ] canvasPageView dealloc in()");
+	
     [super dealloc];
 }
 
