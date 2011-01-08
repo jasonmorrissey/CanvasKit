@@ -124,24 +124,24 @@
 
 - (void) canvasViewDidScrollPrevious:(CanvasView *) canvasView;
 {
-	NSLog(@"canvasViewDidScrollPrevious");
+//	NSLog(@"canvasViewDidScrollPrevious");
 }
 
 - (void) canvasViewDidScrollNext:(CanvasView *) canvasView;
 {
-	NSLog(@"canvasViewDidScrollNext");
+//	NSLog(@"canvasViewDidScrollNext");
 }
 
 - (void) canvasViewDidScrollToLastPage:(CanvasView *) canvasView;
 {
-	NSLog(@"canvasViewDidScrollToLastPage");
+//	NSLog(@"canvasViewDidScrollToLastPage");
 	[self addRandomTileDictionaries];
 	[canvasView refreshTiles];
 }
 
 - (void) canvasViewDidTapTileView:(CanvasTileView *) canvasTileView;
 {
-	NSLog(@"canvasViewDidTapTileView in()");	
+//	NSLog(@"canvasViewDidTapTileView in()");	
 }
 
 
