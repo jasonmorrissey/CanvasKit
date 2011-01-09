@@ -10,9 +10,17 @@
 #import "CanvasTileView.h"
 #import "CanvasView.h"
 
+@interface CanvasPageView()
+
+- (void) notifyTilesBeforeDealloc;
+
+@end
+
+
 @implementation CanvasPageView
 
 @synthesize pageIndex;
+
 
 - (id)initWithFrame:(CGRect)frame 
 {
@@ -29,6 +37,8 @@
 
 - (void) updateTiles;
 {
+	[self notifyTilesBeforeDealloc];
+	
 	CanvasView * canvasView = (CanvasView *) [[self superview] superview];
 	
 	int numPlaceholderTilesRequired = [CanvasView tilesPerPage];
@@ -67,10 +77,18 @@
 //	[[NSString stringWithFormat:@"%d",self.pageIndex] drawAtPoint:CGPointMake(0, 0) withFont:[UIFont systemFontOfSize:11]];
 //}
 
+- (void) notifyTilesBeforeDealloc;
+{
+	for (CanvasTileView * tileView in self.subviews)
+	{
+		[tileView tileWillDealloc];
+	}
+}
+
 - (void)dealloc 
 {
-//	NSLog(@"[ - - - - ] canvasPageView dealloc in()");
-	
+//	NSLog(@"[ - - - - ] canvasPageView dealloc in for page (%d)", self.pageIndex);
+	[self notifyTilesBeforeDealloc];
     [super dealloc];
 }
 

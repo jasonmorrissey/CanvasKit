@@ -96,7 +96,11 @@
 	return [canvasPageView isOnscreen];
 }
 
-
+- (void) tileWillDealloc;
+{
+	// called from CanvasPageView
+	// can be used to flush any NSTimers or other retaining objects
+}
 
 - (void)dealloc {
 	self.tileDictionary = nil;

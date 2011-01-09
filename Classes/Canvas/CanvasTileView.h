@@ -23,5 +23,5 @@
 
 - (BOOL) isOnscreen;
 - (id<CanvasViewDelegateProtocol>) canvasControlDelegate;
-
+- (void) tileWillDealloc;
 @end
