@@ -48,7 +48,7 @@
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView 
 {
-	NSLog(@"[- - - - ] CanvasViewController loadView in()");
+//	NSLog(@"[- - - - ] CanvasViewController loadView in()");
 	[super loadView];
 	canvasView_ = [self createCanvasViewWithDatasource:self];
 	canvasView_.canvasControlDelegate = self;

@@ -232,7 +232,7 @@ static CGSize pageMargin;
 	[oldViewPrevious release];
 	[self.canvasControlDelegate canvasViewDidScrollNext:self];
 	
-	if ((self.page + 2) * tilesPerPage >= [self.datasource totalNumberOfTiles])
+	if ((self.page + 3) * tilesPerPage >= [self.datasource totalNumberOfTiles])
 	{
 		[self.canvasControlDelegate canvasViewDidScrollToLastPage:self];
 	}
