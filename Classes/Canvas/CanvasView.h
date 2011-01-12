@@ -35,7 +35,6 @@
 @property (nonatomic,retain) id<CanvasDataSourceProtocol> datasource;
 @property (nonatomic,retain) id<CanvasViewDelegateProtocol> canvasControlDelegate;
 
-
 - (id)initWithFrame:(CGRect)frame withDataSource:(id<CanvasDataSourceProtocol>) datasource;
 - (void) refreshTiles;
 - (void) resetDimensions;

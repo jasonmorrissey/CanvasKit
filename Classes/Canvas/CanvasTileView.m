@@ -96,6 +96,12 @@
 	return [canvasPageView isOnscreen];
 }
 
+- (BOOL) isDragging
+{
+	CanvasView * canvasView = (CanvasView *) [[[self superview] superview] superview];
+	return canvasView.isDragging;
+}
+
 - (void) tileWillDealloc;
 {
 	// called from CanvasPageView

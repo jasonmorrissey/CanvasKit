@@ -22,6 +22,7 @@
 @property long tileIndex;
 
 - (BOOL) isOnscreen;
+- (BOOL) isDragging;
 - (id<CanvasViewDelegateProtocol>) canvasControlDelegate;
 - (void) tileWillDealloc;
 @end
