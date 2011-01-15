@@ -187,6 +187,14 @@ static CGSize pageMargin;
 
 //- (void) snap
 
+- (void) checkIfNeedForMoreTiles;
+{
+	if ((self.page + 2) * tilesPerPage >= [self.datasource totalNumberOfTiles])
+	{
+		[self.canvasControlDelegate canvasViewDidScrollToLastPage:self];
+	}
+}
+
 - (void) refreshTiles;
 {
 	[self reconfigurePageViewIndexes];
@@ -231,12 +239,8 @@ static CGSize pageMargin;
 	[oldViewNext release];
 	[oldViewPrevious release];
 	[self.canvasControlDelegate canvasViewDidScrollNext:self];
-	
-	if ((self.page + 3) * tilesPerPage >= [self.datasource totalNumberOfTiles])
-	{
-		[self.canvasControlDelegate canvasViewDidScrollToLastPage:self];
-	}
 
+	[self checkIfNeedForMoreTiles];
 }
 
 - (void) pagedBackward
@@ -272,6 +276,7 @@ static CGSize pageMargin;
 	[oldViewPrevious release];	
 	
 	[self.canvasControlDelegate canvasViewDidScrollPrevious:self];
+	[self checkIfNeedForMoreTiles];	
 }
 
 - (void) limitHorizontalScroll

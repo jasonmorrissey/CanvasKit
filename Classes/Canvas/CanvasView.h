@@ -41,6 +41,7 @@
 - (void) scrollToTileAtIndex:(long) tileIndex;
 - (void) recalculateTileDimensions;
 - (long) firstTileAtCurrentPage;
+- (void) checkIfNeedForMoreTiles;
 
 // static accessors for subviews
 + (int) nColumns;
