@@ -17,7 +17,7 @@
 
 @implementation CanvasView
 
-#define kMarginMinimum CGSizeMake(10.,10.)
+#define kMarginMinimum CGSizeMake(0.5,0.5)
 
 @synthesize previousPagePlaceholder = previousPagePlaceholder_;
 @synthesize currentPagePlaceholder = currentPagePlaceholder_;
