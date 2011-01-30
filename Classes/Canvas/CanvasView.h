@@ -39,9 +39,11 @@
 - (void) refreshTiles;
 - (void) resetDimensions;
 - (void) scrollToTileAtIndex:(long) tileIndex;
+- (void) scrollToPage:(long) pageIndex;
 - (void) recalculateTileDimensions;
 - (long) firstTileAtCurrentPage;
 - (void) checkIfNeedForMoreTiles;
+- (void) didRotate:(NSNotification *)nsn_notification;
 
 // static accessors for subviews
 + (int) nColumns;
@@ -51,4 +53,5 @@
 + (int) tilesPerPage;
 + (CGSize) pageMargin;
 + (CGRect) rectForTileAtIndex:(int) index;
+
 @end

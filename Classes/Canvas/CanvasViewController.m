@@ -86,7 +86,14 @@
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
+
+//    if (self.tileDictionaries && [self.tileDictionaries isKindOfClass:[NSArray class]])
+//    {
+//		if ([self.tileDictionaries count] > 10)
+//		{
+//			[self.tileDictionaries removeObjectsInRange:NSMakeRange(0, 5)];
+//		}
+//	}    
     // Release any cached data, images, etc. that aren't in use.
 }
 

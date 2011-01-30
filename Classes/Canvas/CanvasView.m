@@ -362,6 +362,12 @@ static CGSize pageMargin;
 	}
 }
 
+- (void) scrollToPage:(long) pageIndex;
+{
+	self.page = pageIndex;
+	[self refreshTiles];
+}
+
 - (void) scrollToTileAtIndex:(long) tileIndex
 {
 	self.page = floor(tileIndex / tilesPerPage);
