@@ -43,7 +43,6 @@
 - (void) recalculateTileDimensions;
 - (long) firstTileAtCurrentPage;
 - (void) checkIfNeedForMoreTiles;
-- (void) didRotate:(NSNotification *)nsn_notification;
 
 // static accessors for subviews
 + (int) nColumns;

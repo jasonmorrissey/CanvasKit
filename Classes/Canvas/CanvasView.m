@@ -61,20 +61,21 @@ static CGSize pageMargin;
 		[self addSubview:currentPagePlaceholder_];
 		[self addSubview:nextPagePlaceholder_];
 		[self resetDimensions];
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:UIDeviceOrientationDidChangeNotification object:nil];
+//		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:UIDeviceOrientationDidChangeNotification object:nil];
 		
     }
     return self;
 }
 
--(void)didRotate:(NSNotification *)nsn_notification 
-{
-//	[UIView beginAnimations:@"canvasDimensionChange" context:self];
-//	[self resetDimensions];
-//	[UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.superview cache:YES];
-//	[UIView setAnimationDuration:1.];
-//	[UIView commitAnimations];	
-}
+
+//-(void)didRotate:(NSNotification *)nsn_notification 
+//{
+////	[UIView beginAnimations:@"canvasDimensionChange" context:self];
+////	[self resetDimensions];
+////	[UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.superview cache:YES];
+////	[UIView setAnimationDuration:1.];
+////	[UIView commitAnimations];	
+//}
 
 - (void) setNeedsLayout
 {
