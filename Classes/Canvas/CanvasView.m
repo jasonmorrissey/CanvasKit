@@ -20,14 +20,12 @@
 @synthesize isVerticalScrolling = isVerticalScrolling_;
 @synthesize page;
 
-
-static int nColumns;
-static int nRows;
+static NSUInteger nColumns;
+static NSUInteger nRows;
 static CGSize tileMargin;
-static int tilesPerPage;
+static NSUInteger tilesPerPage;
 static CGSize tileSize;
 static CGSize pageMargin;
-
 
 - (id)initWithFrame:(CGRect)frame withDataSource:(id<CanvasDataSourceProtocol>) datasource
 {    
@@ -124,7 +122,7 @@ static CGSize pageMargin;
 	tilesPerPage = nColumns * nRows;
 }
 
-- (long) firstTileAtCurrentPage;
+- (NSUInteger) firstTileAtCurrentPage;
 {
 	return self.page * tilesPerPage;
 }
@@ -201,6 +199,7 @@ static CGSize pageMargin;
 	[oldViewCurrent release];
 	[oldViewNext release];
 	[oldViewPrevious release];
+    
 	[self.canvasControlDelegate canvasViewDidScrollNext:self];
 
 	[self checkIfNeedForMoreTiles];
@@ -337,12 +336,12 @@ static CGSize pageMargin;
 #pragma mark -
 #pragma mark Static Accessors for Subviews
 
-+ (int) nColumns;
++ (NSUInteger) nColumns;
 {
 	return nColumns;
 }
 
-+ (int) nRows;
++ (NSUInteger) nRows;
 {
 	return nRows;
 }
@@ -357,7 +356,7 @@ static CGSize pageMargin;
 	return tileMargin;
 }
 
-+ (int) tilesPerPage;
++ (NSUInteger) tilesPerPage;
 {
 	return tilesPerPage;
 }

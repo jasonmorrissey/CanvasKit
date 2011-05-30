@@ -1,7 +1,3 @@
-//
-//  CanvasPageView.m
-//  CanvasKit
-//
 //  Created by Jason Morrissey
 
 #import "CanvasPageView.h"
@@ -9,16 +5,12 @@
 #import "CanvasView.h"
 
 @interface CanvasPageView()
-
-- (void) notifyTilesBeforeDealloc;
-
+- (void) notifyTilesBeforeRelease;
 @end
-
 
 @implementation CanvasPageView
 
 @synthesize pageIndex;
-
 
 - (id)initWithFrame:(CGRect)frame 
 {
@@ -32,10 +24,9 @@
     return self;
 }
 
-
 - (void) updateTiles;
 {
-	[self notifyTilesBeforeDealloc];
+	[self notifyTilesBeforeRelease];
 	
 	CanvasView * canvasView = (CanvasView *) [[self superview] superview];
 	
@@ -57,8 +48,6 @@
 			numPlaceholderTilesRequired--;
 		}
 	}
-	
-//	[self setNeedsDisplay];
 }
 
 - (BOOL) isOnscreen
@@ -67,26 +56,17 @@
 	return (self.pageIndex == canvasView.page);
 }
 
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-//- (void)drawRect:(CGRect)rect 
-//{
-//    // Drawing code.
-//	[[NSString stringWithFormat:@"%d",self.pageIndex] drawAtPoint:CGPointMake(0, 0) withFont:[UIFont systemFontOfSize:11]];
-//}
-
-- (void) notifyTilesBeforeDealloc;
+- (void) notifyTilesBeforeRelease;
 {
 	for (CanvasTileView * tileView in self.subviews)
 	{
-		[tileView tileWillDealloc];
+		[tileView tileWillRelease];
 	}
 }
 
 - (void)dealloc 
 {
-//	NSLog(@"[ - - - - ] canvasPageView dealloc in for page (%d)", self.pageIndex);
-	[self notifyTilesBeforeDealloc];
+	[self notifyTilesBeforeRelease];
     [super dealloc];
 }
 

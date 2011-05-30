@@ -1,7 +1,3 @@
-//
-//  CanvasPagePlaceholder.m
-//  CanvasKit
-//
 //  Created by Jason Morrissey
 
 #import "CanvasPagePlaceholder.h"
@@ -27,35 +23,14 @@
     return self;
 }
 
-
 - (void) layoutSubviews
 {
 	[super layoutSubviews];	
 	[pageView_ setFrame:CGRectMake([CanvasView pageMargin].width, [CanvasView pageMargin].height, self.bounds.size.width-[CanvasView pageMargin].width * 2, self.bounds.size.height-[CanvasView pageMargin].height * 2)];	
 }
 
-//@synthesize pageView = pageView_;
-
-//- (id)initWithFrame:(CGRect)frame {
-//    
-//    self = [super initWithFrame:frame];
-//    if (self) 
-//	{
-//		[self addSubview:pageView_];
-//    }
-//    return self;
-//}
-
-
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-//- (void)drawRect:(CGRect)rect {
-//	[self.label drawAtPoint:CGPointMake(0, 0) withFont:[UIFont systemFontOfSize:11]];
-//}
-
 - (void)dealloc 
 {
-//	NSLog(@"[ - - - - ] canvasPagePlaceholderView dealloc in()");
 	self.pageView = nil;
 	self.label = nil;
     [super dealloc];

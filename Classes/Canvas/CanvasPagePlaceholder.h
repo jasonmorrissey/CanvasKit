@@ -1,12 +1,6 @@
-//
-//  CanvasPagePlaceholder.h
-//  CanvasKit
-//
 //  Created by Jason Morrissey
 
-
 #import "CanvasPageView.h"
-
 
 @interface CanvasPagePlaceholder : UIView {
 	CanvasPageView * pageView_;

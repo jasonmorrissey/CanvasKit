@@ -3,7 +3,6 @@
 @interface CanvasKitAppDelegate : NSObject <UIApplicationDelegate> 
 {
     UIWindow *window_;
-    UINavigationController *navigationController_;
 }
 
 @property (nonatomic, retain) UIWindow *window;

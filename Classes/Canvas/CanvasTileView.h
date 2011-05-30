@@ -1,13 +1,9 @@
-//
-//  CanvasTileView.h
-//  CanvasKit
-//
 //  Created by Jason Morrissey
-
 
 #import "CanvasViewDelegateProtocol.h"
 
-@interface CanvasTileView : UIView {
+@interface CanvasTileView : UIView 
+{
 	NSDictionary * tileDictionary_;
 	BOOL highlighted_;
 	BOOL selected_;
@@ -22,5 +18,5 @@
 - (BOOL) isOnscreen;
 - (BOOL) isDragging;
 - (id<CanvasViewDelegateProtocol>) canvasControlDelegate;
-- (void) tileWillDealloc;
+- (void) tileWillRelease;
 @end

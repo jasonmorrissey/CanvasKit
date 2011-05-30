@@ -25,8 +25,8 @@
 @property (nonatomic,retain) CanvasPagePlaceholder * previousPagePlaceholder;
 @property (nonatomic,retain) CanvasPagePlaceholder * currentPagePlaceholder;
 @property (nonatomic,retain) CanvasPagePlaceholder * nextPagePlaceholder;
-@property (nonatomic,retain) id<CanvasDataSourceProtocol> datasource;
-@property (nonatomic,retain) id<CanvasViewDelegateProtocol> canvasControlDelegate;
+@property (nonatomic,assign) id<CanvasDataSourceProtocol> datasource;
+@property (nonatomic,assign) id<CanvasViewDelegateProtocol> canvasControlDelegate;
 
 - (id) initWithFrame:(CGRect)frame withDataSource:(id<CanvasDataSourceProtocol>) datasource;
 - (void) refreshTiles;
@@ -34,15 +34,15 @@
 - (void) scrollToTileAtIndex:(long) tileIndex;
 - (void) scrollToPage:(long) pageIndex;
 - (void) recalculateTileDimensions;
-- (long) firstTileAtCurrentPage;
+- (NSUInteger) firstTileAtCurrentPage;
 - (void) checkIfNeedForMoreTiles;
 
 // static accessors for subviews
-+ (int) nColumns;
-+ (int) nRows;
++ (NSUInteger) nColumns;
++ (NSUInteger) nRows;
 + (CGSize) tileSize;
 + (CGSize) tileMargin;
-+ (int) tilesPerPage;
++ (NSUInteger) tilesPerPage;
 + (CGSize) pageMargin;
 + (CGRect) rectForTileAtIndex:(int) index;
 

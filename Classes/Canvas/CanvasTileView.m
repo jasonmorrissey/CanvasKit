@@ -1,7 +1,3 @@
-//
-//  CanvasTileView.m
-//  CanvasKit
-//
 //  Created by Jason Morrissey
 
 #import "CanvasTileView.h"
@@ -10,7 +6,6 @@
 @interface CanvasTileView()
 @end
 
-
 @implementation CanvasTileView
 
 @synthesize tileDictionary = tileDictionary_;
@@ -18,10 +13,11 @@
 @synthesize selected = selected_;
 @synthesize tileIndex = tileIndex_;
 
-- (id)initWithFrame:(CGRect)frame {
-    
+- (id)initWithFrame:(CGRect)frame 
+{
     self = [super initWithFrame:frame];
-    if (self) {
+    if (self) 
+    {
         self.backgroundColor = [UIColor orangeColor];
     }
     return self;
@@ -72,10 +68,7 @@
 	return canvasView.canvasControlDelegate;
 }
 
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
-    // Drawing code.
 	NSString * ident = [self.tileDictionary objectForKey:@"ident"];
 	if (self.highlighted)
 	{
@@ -85,7 +78,6 @@
 	{
 		[ident drawAtPoint:CGPointMake(5, 5) withFont:[UIFont systemFontOfSize:10]];		
 	}
-
 }
 
 - (BOOL) isOnscreen
@@ -100,7 +92,7 @@
 	return canvasView.isDragging;
 }
 
-- (void) tileWillDealloc;
+- (void) tileWillRelease;
 {
 	// called from CanvasPageView
 	// can be used to flush any NSTimers or other retaining objects

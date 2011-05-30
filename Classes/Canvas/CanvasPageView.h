@@ -1,18 +1,13 @@
-//
-//  CanvasPageView.h
-//  CanvasKit
-//
 //  Created by Jason Morrissey
-
 
 #import "CanvasDataSourceProtocol.h"
 
 @interface CanvasPageView : UIView 
 {
-	int pageIndex;
+	NSUInteger pageIndex;
 }
 
-@property int pageIndex;
+@property NSUInteger pageIndex;
 
 - (void) updateTiles;
 - (BOOL) isOnscreen;

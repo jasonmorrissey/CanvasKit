@@ -129,21 +129,45 @@
 		888B970B12B8CD9700BFE101 /* Canvas */ = {
 			isa = PBXGroup;
 			children = (
-				888B970812B8CD6C00BFE101 /* CanvasView.h */,
-				888B970912B8CD6C00BFE101 /* CanvasView.m */,
-				888B970C12B8CDC800BFE101 /* CanvasViewController.h */,
-				888B970D12B8CDC800BFE101 /* CanvasViewController.m */,
-				888B973312B8D24500BFE101 /* CanvasPageView.h */,
-				888B973412B8D24500BFE101 /* CanvasPageView.m */,
-				47B6514F12B9B411009E1347 /* CanvasPagePlaceholder.h */,
-				47B6515012B9B411009E1347 /* CanvasPagePlaceholder.m */,
-				47B6524212B9C5DD009E1347 /* CanvasDataSourceProtocol.h */,
-				47B6526F12B9C7D2009E1347 /* CanvasTileView.h */,
-				47B6527012B9C7D2009E1347 /* CanvasTileView.m */,
-				47B6623512BA0BA4009E1347 /* CanvasViewDelegateProtocol.h */,
 				47A85E9C12BC7A0E008240BC /* CanvasKit.h */,
+				8894DA7513933F6900C99D2C /* Protocols */,
+				8894DA7413933F5C00C99D2C /* Controllers */,
+				8894DA7313933F5100C99D2C /* Views */,
 			);
 			path = Canvas;
+			sourceTree = "<group>";
+		};
+		8894DA7313933F5100C99D2C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				888B970812B8CD6C00BFE101 /* CanvasView.h */,
+				888B970912B8CD6C00BFE101 /* CanvasView.m */,
+				888B973312B8D24500BFE101 /* CanvasPageView.h */,
+				888B973412B8D24500BFE101 /* CanvasPageView.m */,
+				47B6526F12B9C7D2009E1347 /* CanvasTileView.h */,
+				47B6527012B9C7D2009E1347 /* CanvasTileView.m */,
+				47B6514F12B9B411009E1347 /* CanvasPagePlaceholder.h */,
+				47B6515012B9B411009E1347 /* CanvasPagePlaceholder.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		8894DA7413933F5C00C99D2C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				888B970C12B8CDC800BFE101 /* CanvasViewController.h */,
+				888B970D12B8CDC800BFE101 /* CanvasViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		8894DA7513933F6900C99D2C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				47B6524212B9C5DD009E1347 /* CanvasDataSourceProtocol.h */,
+				47B6623512BA0BA4009E1347 /* CanvasViewDelegateProtocol.h */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

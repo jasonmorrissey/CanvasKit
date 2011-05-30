@@ -1,10 +1,4 @@
-//
-//  CanvasViewDelegateProtocol.h
-//  CanvasKit
-//
 //  Created by Jason Morrissey
-
-
 
 @class CanvasView;
 @class CanvasTileView;
