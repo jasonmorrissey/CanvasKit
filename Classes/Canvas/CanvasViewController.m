@@ -1,10 +1,4 @@
-    //
-//  CanvasViewController.m
-//  CanvasKit
-//
-//  Created by JM on 15/12/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
-//
+//  Created by Jason Morrissey
 
 #import "CanvasViewController.h"
 #import "CanvasDataSourceProtocol.h"
@@ -25,7 +19,6 @@
     if (self) 
 	{
 		tileDictionaries_ = [[NSMutableArray alloc] init];
-//		[self addRandomTileDictionaries];
     }
     return self;
 }
@@ -44,11 +37,8 @@
 	}
 }
 
-
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView 
 {
-//	NSLog(@"[- - - - ] CanvasViewController loadView in()");
 	[super loadView];
 	canvasView_ = [self createCanvasViewWithDatasource:self];
 	canvasView_.canvasControlDelegate = self;
@@ -57,16 +47,8 @@
 	canvasView_.frame = self.view.bounds;
 }
 
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-*/
-
 - (void) viewWillAppear:(BOOL)animated
 {
-//	NSLog(@"[- - - - ] CanvasViewController viewWillAppear in()");
 	[super viewWillAppear:animated];
 	long firstVisibleTile = [canvasView_ firstTileAtCurrentPage];
 	[canvasView_ resetDimensions];
@@ -75,39 +57,20 @@
 }
 	 
 
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
-//    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
+{
 	return YES;
 }
 
-
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-
-//    if (self.tileDictionaries && [self.tileDictionaries isKindOfClass:[NSArray class]])
-//    {
-//		if ([self.tileDictionaries count] > 10)
-//		{
-//			[self.tileDictionaries removeObjectsInRange:NSMakeRange(0, 5)];
-//		}
-//	}    
-    // Release any cached data, images, etc. that aren't in use.
-}
-
-- (void)viewDidUnload {
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+- (void)viewDidUnload 
+{
 	self.canvasView = nil;
 	self.view = nil;
     [super viewDidUnload];
 }
 
-
-- (void)dealloc {
-//	NSLog(@"[ - - - - ] canvasViewController dealloc in()");
+- (void)dealloc 
+{
 	self.canvasView.canvasControlDelegate = nil;
 	self.canvasView = nil;
 	self.view = nil;
@@ -118,13 +81,7 @@
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
 	[self viewWillAppear:YES];
-//	NSLog(@"Post View rotated");
-//	//	[self refreshSegmentControl];	
-//	
-//	//	[self positionSubredditPickFrameFromOrientation:fromInterfaceOrientation];
-//	[[self tableView] reloadRowsAtIndexPaths:[[self tableView] indexPathsForVisibleRows] withRowAnimation:UITableViewRowAnimationNone];	
 }
-
 
 #pragma mark -
 #pragma mark CanvasViewDelegate
@@ -191,8 +148,7 @@
 
 - (CGSize) tileDimensions;
 {
-//	return CGSizeMake(120., 100.);
-	return CGSizeMake(400., 200.);
+	return CGSizeMake(120., 100.);
 }
 
 - (CanvasTileView *) tileViewForIndex:(long) tileIndex;

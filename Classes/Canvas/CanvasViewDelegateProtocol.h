@@ -2,11 +2,9 @@
 //  CanvasViewDelegateProtocol.h
 //  CanvasKit
 //
-//  Created by D on 16/12/10.
-//  Copyright 2010 The Design Shed. All rights reserved.
-//
+//  Created by Jason Morrissey
 
-#import <UIKit/UIKit.h>
+
 
 @class CanvasView;
 @class CanvasTileView;

@@ -1,10 +1,4 @@
-//
-//  CanvasView.m
-//  CanvasKit
-//
-//  Created by JM on 15/12/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
-//
+//  Created by Jason Morrissey
 
 #import "CanvasView.h"
 
@@ -13,7 +7,6 @@
 - (void) refreshTiles;
 - (void) initTileDimensionsForBoundsSize:(CGSize) boundsSize;
 @end
-
 
 @implementation CanvasView
 
@@ -61,21 +54,9 @@ static CGSize pageMargin;
 		[self addSubview:currentPagePlaceholder_];
 		[self addSubview:nextPagePlaceholder_];
 		[self resetDimensions];
-//		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:UIDeviceOrientationDidChangeNotification object:nil];
-		
     }
     return self;
 }
-
-
-//-(void)didRotate:(NSNotification *)nsn_notification 
-//{
-////	[UIView beginAnimations:@"canvasDimensionChange" context:self];
-////	[self resetDimensions];
-////	[UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.superview cache:YES];
-////	[UIView setAnimationDuration:1.];
-////	[UIView commitAnimations];	
-//}
 
 - (void) setNeedsLayout
 {
@@ -102,7 +83,6 @@ static CGSize pageMargin;
 
 - (void) resetDimensions
 {
-//	NSLog(@"reseting dimensions");
 	CGSize boundSize = self.bounds.size;
 	
 	[self recalculateTileDimensions];
@@ -125,6 +105,7 @@ static CGSize pageMargin;
 	}
 
 	[self refreshTiles];
+    
 	// set to offset to center page
 	[self snapToCenterPageAnimated:NO];
 }
@@ -141,7 +122,6 @@ static CGSize pageMargin;
 	CGFloat marginVertical = (boundsSize.height - nRows * tileSize.height) / (nRows + 1);
 	tileMargin = CGSizeMake(marginHorizontal, marginVertical);
 	tilesPerPage = nColumns * nRows;
-//	NSLog(@"Cols: %d \t Rows: %d \t Tiles: %d", nColumns, nRows, tilesPerPage);	
 }
 
 - (long) firstTileAtCurrentPage;
@@ -159,16 +139,8 @@ static CGSize pageMargin;
 	}
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code.
-}
-*/
-
-- (void)dealloc {
-//	NSLog(@"[ - - - - ] canvasView dealloc in()");
+- (void)dealloc 
+{
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	self.previousPagePlaceholder = nil;
 	self.currentPagePlaceholder = nil;
@@ -177,16 +149,6 @@ static CGSize pageMargin;
 	self.canvasControlDelegate = nil;
     [super dealloc];
 }
-
-//- (void) refreshTiles;
-//{
-//	self.currentPagePlaceholder.pageView.pageTileDictionaries = [self.datasource tileDictionariesForPage:self.page];
-//	self.previousPagePlaceholder.pageView.pageTileDictionaries = [self.datasource tileDictionariesForPage:self.page - 1];
-//	self.nextPagePlaceholder.pageView.pageTileDictionaries = [self.datasource tileDictionariesForPage:self.page + 1];
-//	[self setNeedsDisplay];
-//}
-
-//- (void) snap
 
 - (void) checkIfNeedForMoreTiles;
 {
@@ -268,9 +230,6 @@ static CGSize pageMargin;
 
 	[self.currentPagePlaceholder.pageView updateTiles];
 	[self.previousPagePlaceholder.pageView updateTiles];
-//	[oldViewCurrent setNeedsDisplay];
-//	[oldViewNext setNeedsDisplay];
-//	[oldViewPrevious setNeedsDisplay];
 	
 	[oldViewCurrent release];
 	[oldViewNext release];

@@ -2,9 +2,7 @@
 //  CanvasPagePlaceholder.m
 //  CanvasKit
 //
-//  Created by D on 16/12/10.
-//  Copyright 2010 The Design Shed. All rights reserved.
-//
+//  Created by Jason Morrissey
 
 #import "CanvasPagePlaceholder.h"
 #import "CanvasView.h"

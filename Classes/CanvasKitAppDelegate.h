@@ -1,21 +1,13 @@
-//
-//  CanvasKitAppDelegate.h
-//  CanvasKit
-//
-//  Created by JM on 15/12/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
-//
+//  Created by Jason Morrissey
 
-#import <UIKit/UIKit.h>
-
-@interface CanvasKitAppDelegate : NSObject <UIApplicationDelegate> {
-    
-    UIWindow *window;
-    UINavigationController *navigationController;
+@interface CanvasKitAppDelegate : NSObject <UIApplicationDelegate> 
+{
+    UIWindow *window_;
+    UINavigationController *navigationController_;
 }
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
+@property (nonatomic, retain) UIWindow *window;
+@property (nonatomic, retain) UINavigationController *navigationController;
 
 @end
 

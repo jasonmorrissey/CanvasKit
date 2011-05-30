@@ -3,8 +3,6 @@
 //  CanvasKit
 //
 //  Created by D on 18/12/10.
-//  Copyright 2010 The Design Shed. All rights reserved.
-//
 
 #import <Foundation/Foundation.h>
 #import "CanvasView.h"

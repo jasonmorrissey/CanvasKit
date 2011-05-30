@@ -1,32 +1,24 @@
-//
-//  CanvasKitAppDelegate.m
-//  CanvasKit
-//
-//  Created by JM on 15/12/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
-//
+//  Created by Jason Morrissey
 
 #import "CanvasKitAppDelegate.h"
-#import "RootViewController.h"
-
+#import "CanvasViewController.h"
 
 @implementation CanvasKitAppDelegate
 
-@synthesize window;
-@synthesize navigationController;
-
+@synthesize window = window_;
+@synthesize navigationController = navigationController_;
 
 #pragma mark -
 #pragma mark Application lifecycle
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-    
-    // Override point for customization after application launch.
-    
-    // Add the navigation controller's view to the window and display.
-    [self.window addSubview:navigationController.view];
-    [self.window makeKeyAndVisible];
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions 
+{
+	CanvasViewController * cvc = [[[CanvasViewController alloc] initWithNibName:nil bundle:nil] autorelease];
+    self.navigationController = [[[UINavigationController alloc] initWithRootViewController:cvc] autorelease];
 
+    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]] autorelease];
+    [self.window addSubview:self.navigationController.view];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
@@ -80,8 +72,8 @@
 
 
 - (void)dealloc {
-	[navigationController release];
-	[window release];
+	self.navigationController = nil;
+    self.window = nil;
 	[super dealloc];
 }
 

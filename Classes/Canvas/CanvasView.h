@@ -1,12 +1,5 @@
-//
-//  CanvasView.h
-//  CanvasKit
-//
-//  Created by JM on 15/12/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
-//
+//  Created by Jason Morrissey
 
-#import <UIKit/UIKit.h>
 #import "CanvasPageView.h"
 #import "CanvasPagePlaceholder.h"
 #import "CanvasDataSourceProtocol.h"
@@ -35,7 +28,7 @@
 @property (nonatomic,retain) id<CanvasDataSourceProtocol> datasource;
 @property (nonatomic,retain) id<CanvasViewDelegateProtocol> canvasControlDelegate;
 
-- (id)initWithFrame:(CGRect)frame withDataSource:(id<CanvasDataSourceProtocol>) datasource;
+- (id) initWithFrame:(CGRect)frame withDataSource:(id<CanvasDataSourceProtocol>) datasource;
 - (void) refreshTiles;
 - (void) resetDimensions;
 - (void) scrollToTileAtIndex:(long) tileIndex;

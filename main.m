@@ -1,17 +1,11 @@
-//
-//  main.m
-//  CanvasKit
-//
-//  Created by JM on 15/12/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
-//
+//  Created by Jason Morrissey
 
-#import <UIKit/UIKit.h>
+#import "CanvasKitAppDelegate.h"
 
-int main(int argc, char *argv[]) {
-    
+int main(int argc, char *argv[]) 
+{
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-    int retVal = UIApplicationMain(argc, argv, nil, nil);
+    int retVal = UIApplicationMain(argc, argv, nil, @"CanvasKitAppDelegate");
     [pool release];
     return retVal;
 }
