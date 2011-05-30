@@ -1,8 +1,9 @@
 //  Created by Jason Morrissey
 
-@interface CanvasKitAppDelegate : NSObject <UIApplicationDelegate> 
+@interface CanvasDemoAppDelegate : NSObject <UIApplicationDelegate> 
 {
     UIWindow *window_;
+    UINavigationController *UINavigationController_;
 }
 
 @property (nonatomic, retain) UIWindow *window;

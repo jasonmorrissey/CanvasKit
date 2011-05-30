@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'CanvasKit' target in the 'CanvasKit' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif

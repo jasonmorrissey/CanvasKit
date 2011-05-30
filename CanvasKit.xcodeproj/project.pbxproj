@@ -7,27 +7,49 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D3623260D0F684500981E51 /* CanvasKitAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* CanvasKitAppDelegate.m */; };
+		1D3623260D0F684500981E51 /* CanvasDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* CanvasDemoAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
-		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
-		47B6515112B9B411009E1347 /* CanvasPagePlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B6515012B9B411009E1347 /* CanvasPagePlaceholder.m */; };
-		47B6527112B9C7D2009E1347 /* CanvasTileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B6527012B9C7D2009E1347 /* CanvasTileView.m */; };
-		888B970312B8CD3A00BFE101 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888B970212B8CD3A00BFE101 /* MainWindow-iPad.xib */; };
-		888B970A12B8CD6C00BFE101 /* CanvasView.m in Sources */ = {isa = PBXBuildFile; fileRef = 888B970912B8CD6C00BFE101 /* CanvasView.m */; };
-		888B970E12B8CDC800BFE101 /* CanvasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 888B970D12B8CDC800BFE101 /* CanvasViewController.m */; };
-		888B973512B8D24500BFE101 /* CanvasPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 888B973412B8D24500BFE101 /* CanvasPageView.m */; };
+		887028241393944100E89C5B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		8870282C1393954100E89C5B /* CanvasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 888B970D12B8CDC800BFE101 /* CanvasViewController.m */; };
+		8870282D1393954100E89C5B /* CanvasView.m in Sources */ = {isa = PBXBuildFile; fileRef = 888B970912B8CD6C00BFE101 /* CanvasView.m */; };
+		8870282E1393954100E89C5B /* CanvasPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 888B973412B8D24500BFE101 /* CanvasPageView.m */; };
+		8870282F1393954100E89C5B /* CanvasTileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B6527012B9C7D2009E1347 /* CanvasTileView.m */; };
+		887028301393954100E89C5B /* CanvasPagePlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B6515012B9B411009E1347 /* CanvasPagePlaceholder.m */; };
+		887028331393958000E89C5B /* libCanvasKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 887028231393944100E89C5B /* libCanvasKit.a */; };
+		88702834139395B700E89C5B /* CanvasKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 47A85E9C12BC7A0E008240BC /* CanvasKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		88702835139395B700E89C5B /* CanvasDataSourceProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 47B6524212B9C5DD009E1347 /* CanvasDataSourceProtocol.h */; settings = {ATTRIBUTES = (); }; };
+		88702836139395B700E89C5B /* CanvasViewDelegateProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 47B6623512BA0BA4009E1347 /* CanvasViewDelegateProtocol.h */; settings = {ATTRIBUTES = (); }; };
+		88702837139395B700E89C5B /* CanvasViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 888B970C12B8CDC800BFE101 /* CanvasViewController.h */; settings = {ATTRIBUTES = (); }; };
+		88702838139395B700E89C5B /* CanvasView.h in Headers */ = {isa = PBXBuildFile; fileRef = 888B970812B8CD6C00BFE101 /* CanvasView.h */; settings = {ATTRIBUTES = (); }; };
+		88702839139395B700E89C5B /* CanvasPageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 888B973312B8D24500BFE101 /* CanvasPageView.h */; settings = {ATTRIBUTES = (); }; };
+		8870283A139395B700E89C5B /* CanvasTileView.h in Headers */ = {isa = PBXBuildFile; fileRef = 47B6526F12B9C7D2009E1347 /* CanvasTileView.h */; settings = {ATTRIBUTES = (); }; };
+		8870283B139395B700E89C5B /* CanvasPagePlaceholder.h in Headers */ = {isa = PBXBuildFile; fileRef = 47B6514F12B9B411009E1347 /* CanvasPagePlaceholder.h */; settings = {ATTRIBUTES = (); }; };
+		8870283C1393963F00E89C5B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
+		8870283D1393965200E89C5B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		8870284213939A2800E89C5B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		8870284313939A3000E89C5B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		8870284413939ACD00E89C5B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
+		8870284713939B2800E89C5B /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8870284613939B2800E89C5B /* DemoViewController.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		887028311393957900E89C5B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 887028221393944100E89C5B;
+			remoteInfo = CanvasKit;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D3623240D0F684500981E51 /* CanvasKitAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CanvasKitAppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		1D3623250D0F684500981E51 /* CanvasKitAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvasKitAppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* CanvasKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CanvasKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D3623240D0F684500981E51 /* CanvasDemoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CanvasDemoAppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		1D3623250D0F684500981E51 /* CanvasDemoAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvasDemoAppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* CanvasDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CanvasDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		28A0AAE50D9B0CCF005BE974 /* CanvasKit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasKit_Prefix.pch; sourceTree = "<group>"; };
+		28A0AAE50D9B0CCF005BE974 /* CanvasKitPrefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CanvasKitPrefix.pch; path = CanvasKit/Other/CanvasKitPrefix.pch; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		47A85E9C12BC7A0E008240BC /* CanvasKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasKit.h; sourceTree = "<group>"; };
 		47B6514F12B9B411009E1347 /* CanvasPagePlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CanvasPagePlaceholder.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -36,14 +58,18 @@
 		47B6526F12B9C7D2009E1347 /* CanvasTileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CanvasTileView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		47B6527012B9C7D2009E1347 /* CanvasTileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvasTileView.m; sourceTree = "<group>"; };
 		47B6623512BA0BA4009E1347 /* CanvasViewDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CanvasViewDelegateProtocol.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		888B970212B8CD3A00BFE101 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources-iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
+		887028231393944100E89C5B /* libCanvasKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCanvasKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		887028271393944100E89C5B /* CanvasKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CanvasKit-Prefix.pch"; sourceTree = "<group>"; };
+		887028411393978500E89C5B /* CanvasDemoPrefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasDemoPrefix.pch; sourceTree = "<group>"; };
+		8870284513939B2800E89C5B /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
+		8870284613939B2800E89C5B /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
 		888B970812B8CD6C00BFE101 /* CanvasView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CanvasView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		888B970912B8CD6C00BFE101 /* CanvasView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvasView.m; sourceTree = "<group>"; };
 		888B970C12B8CDC800BFE101 /* CanvasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CanvasViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		888B970D12B8CDC800BFE101 /* CanvasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvasViewController.m; sourceTree = "<group>"; };
 		888B973312B8D24500BFE101 /* CanvasPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CanvasPageView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		888B973412B8D24500BFE101 /* CanvasPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvasPageView.m; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* CanvasKit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CanvasKit-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* CanvasDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CanvasDemo-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,29 +77,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
-				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
-				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
+				8870284413939ACD00E89C5B /* CoreGraphics.framework in Frameworks */,
+				8870284313939A3000E89C5B /* Foundation.framework in Frameworks */,
+				8870284213939A2800E89C5B /* UIKit.framework in Frameworks */,
+				887028331393958000E89C5B /* libCanvasKit.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		887028201393944100E89C5B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				887028241393944100E89C5B /* Foundation.framework in Frameworks */,
+				8870283D1393965200E89C5B /* UIKit.framework in Frameworks */,
+				8870283C1393963F00E89C5B /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080E96DDFE201D6D7F000001 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				1D3623240D0F684500981E51 /* CanvasKitAppDelegate.h */,
-				1D3623250D0F684500981E51 /* CanvasKitAppDelegate.m */,
-				888B970B12B8CD9700BFE101 /* Canvas */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* CanvasKit.app */,
+				1D6058910D05DD3D006BFB54 /* CanvasDemo.app */,
+				887028231393944100E89C5B /* libCanvasKit.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -81,31 +109,22 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				080E96DDFE201D6D7F000001 /* Classes */,
-				29B97315FDCFA39411CA2CEA /* Other Sources */,
-				29B97317FDCFA39411CA2CEA /* Resources */,
-				888B970112B8CD3900BFE101 /* Resources-iPad */,
+				8870282B139394C000E89C5B /* Demo */,
+				887028251393944100E89C5B /* CanvasKit */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
 		};
-		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+		29B97315FDCFA39411CA2CEA /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				28A0AAE50D9B0CCF005BE974 /* CanvasKit_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
+				8D1107310486CEB800E47090 /* CanvasDemo-Info.plist */,
+				887028411393978500E89C5B /* CanvasDemoPrefix.pch */,
 			);
-			name = "Other Sources";
-			sourceTree = "<group>";
-		};
-		29B97317FDCFA39411CA2CEA /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				8D1107310486CEB800E47090 /* CanvasKit-Info.plist */,
-			);
-			name = Resources;
+			path = Other;
 			sourceTree = "<group>";
 		};
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
@@ -118,23 +137,46 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		888B970112B8CD3900BFE101 /* Resources-iPad */ = {
-			isa = PBXGroup;
-			children = (
-				888B970212B8CD3A00BFE101 /* MainWindow-iPad.xib */,
-			);
-			name = "Resources-iPad";
-			sourceTree = "<group>";
-		};
-		888B970B12B8CD9700BFE101 /* Canvas */ = {
+		887028251393944100E89C5B /* CanvasKit */ = {
 			isa = PBXGroup;
 			children = (
 				47A85E9C12BC7A0E008240BC /* CanvasKit.h */,
 				8894DA7513933F6900C99D2C /* Protocols */,
 				8894DA7413933F5C00C99D2C /* Controllers */,
 				8894DA7313933F5100C99D2C /* Views */,
+				8870283F1393973F00E89C5B /* Other */,
+				887028261393944100E89C5B /* Supporting Files */,
 			);
-			path = Canvas;
+			path = CanvasKit;
+			sourceTree = "<group>";
+		};
+		887028261393944100E89C5B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				887028271393944100E89C5B /* CanvasKit-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8870282B139394C000E89C5B /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				29B97315FDCFA39411CA2CEA /* Other */,
+				1D3623240D0F684500981E51 /* CanvasDemoAppDelegate.h */,
+				1D3623250D0F684500981E51 /* CanvasDemoAppDelegate.m */,
+				8870284513939B2800E89C5B /* DemoViewController.h */,
+				8870284613939B2800E89C5B /* DemoViewController.m */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
+		8870283F1393973F00E89C5B /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				28A0AAE50D9B0CCF005BE974 /* CanvasKitPrefix.pch */,
+			);
+			name = Other;
+			path = ../Classes/Canvas;
 			sourceTree = "<group>";
 		};
 		8894DA7313933F5100C99D2C /* Views */ = {
@@ -149,7 +191,7 @@
 				47B6514F12B9B411009E1347 /* CanvasPagePlaceholder.h */,
 				47B6515012B9B411009E1347 /* CanvasPagePlaceholder.m */,
 			);
-			name = Views;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		8894DA7413933F5C00C99D2C /* Controllers */ = {
@@ -158,7 +200,7 @@
 				888B970C12B8CDC800BFE101 /* CanvasViewController.h */,
 				888B970D12B8CDC800BFE101 /* CanvasViewController.m */,
 			);
-			name = Controllers;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		8894DA7513933F6900C99D2C /* Protocols */ = {
@@ -167,15 +209,33 @@
 				47B6524212B9C5DD009E1347 /* CanvasDataSourceProtocol.h */,
 				47B6623512BA0BA4009E1347 /* CanvasViewDelegateProtocol.h */,
 			);
-			name = Protocols;
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		887028211393944100E89C5B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88702834139395B700E89C5B /* CanvasKit.h in Headers */,
+				88702835139395B700E89C5B /* CanvasDataSourceProtocol.h in Headers */,
+				88702836139395B700E89C5B /* CanvasViewDelegateProtocol.h in Headers */,
+				88702837139395B700E89C5B /* CanvasViewController.h in Headers */,
+				88702838139395B700E89C5B /* CanvasView.h in Headers */,
+				88702839139395B700E89C5B /* CanvasPageView.h in Headers */,
+				8870283A139395B700E89C5B /* CanvasTileView.h in Headers */,
+				8870283B139395B700E89C5B /* CanvasPagePlaceholder.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* CanvasKit */ = {
+		1D6058900D05DD3D006BFB54 /* CanvasDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "CanvasKit" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "CanvasDemo" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -184,11 +244,29 @@
 			buildRules = (
 			);
 			dependencies = (
+				887028321393957900E89C5B /* PBXTargetDependency */,
+			);
+			name = CanvasDemo;
+			productName = CanvasKit;
+			productReference = 1D6058910D05DD3D006BFB54 /* CanvasDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		887028221393944100E89C5B /* CanvasKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 887028281393944100E89C5B /* Build configuration list for PBXNativeTarget "CanvasKit" */;
+			buildPhases = (
+				8870281F1393944100E89C5B /* Sources */,
+				887028201393944100E89C5B /* Frameworks */,
+				887028211393944100E89C5B /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
 			);
 			name = CanvasKit;
 			productName = CanvasKit;
-			productReference = 1D6058910D05DD3D006BFB54 /* CanvasKit.app */;
-			productType = "com.apple.product-type.application";
+			productReference = 887028231393944100E89C5B /* libCanvasKit.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -210,7 +288,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* CanvasKit */,
+				1D6058900D05DD3D006BFB54 /* CanvasDemo */,
+				887028221393944100E89C5B /* CanvasKit */,
 			);
 		};
 /* End PBXProject section */
@@ -220,7 +299,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				888B970312B8CD3A00BFE101 /* MainWindow-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,31 +310,45 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				1D3623260D0F684500981E51 /* CanvasKitAppDelegate.m in Sources */,
-				888B970A12B8CD6C00BFE101 /* CanvasView.m in Sources */,
-				888B970E12B8CDC800BFE101 /* CanvasViewController.m in Sources */,
-				888B973512B8D24500BFE101 /* CanvasPageView.m in Sources */,
-				47B6515112B9B411009E1347 /* CanvasPagePlaceholder.m in Sources */,
-				47B6527112B9C7D2009E1347 /* CanvasTileView.m in Sources */,
+				1D3623260D0F684500981E51 /* CanvasDemoAppDelegate.m in Sources */,
+				8870284713939B2800E89C5B /* DemoViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8870281F1393944100E89C5B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8870282C1393954100E89C5B /* CanvasViewController.m in Sources */,
+				8870282D1393954100E89C5B /* CanvasView.m in Sources */,
+				8870282E1393954100E89C5B /* CanvasPageView.m in Sources */,
+				8870282F1393954100E89C5B /* CanvasTileView.m in Sources */,
+				887028301393954100E89C5B /* CanvasPagePlaceholder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		887028321393957900E89C5B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 887028221393944100E89C5B /* CanvasKit */;
+			targetProxy = 887028311393957900E89C5B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = CanvasKit_Prefix.pch;
-				INFOPLIST_FILE = "CanvasKit-Info.plist";
-				PRODUCT_NAME = CanvasKit;
-				SDKROOT = iphoneos;
+				GCC_PREFIX_HEADER = Demo/Other/CanvasDemoPrefix.pch;
+				INFOPLIST_FILE = "$(PROJECT_DIR)/Demo/Other/CanvasDemo-Info.plist";
+				PRODUCT_NAME = CanvasDemo;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -265,15 +357,44 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = CanvasKit_Prefix.pch;
-				INFOPLIST_FILE = "CanvasKit-Info.plist";
-				PRODUCT_NAME = CanvasKit;
-				SDKROOT = iphoneos;
+				GCC_PREFIX_HEADER = Demo/Other/CanvasDemoPrefix.pch;
+				INFOPLIST_FILE = "$(PROJECT_DIR)/Demo/Other/CanvasDemo-Info.plist";
+				PRODUCT_NAME = CanvasDemo;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		887028291393944100E89C5B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DSTROOT = /tmp/CanvasKit.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CanvasKit/Other/CanvasKitPrefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8870282A1393944100E89C5B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DSTROOT = /tmp/CanvasKit.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CanvasKit/Other/CanvasKitPrefix.pch;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -309,11 +430,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "CanvasKit" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "CanvasDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		887028281393944100E89C5B /* Build configuration list for PBXNativeTarget "CanvasKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				887028291393944100E89C5B /* Debug */,
+				8870282A1393944100E89C5B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
