@@ -6,7 +6,7 @@ This is the underlying tiling engine that powers [Alien Blue](http://itunes.appl
 
 At it's core, the CanvasKit is just a fast way to render tiles, but can be extended for deep user interaction.  For example, Alien Blue uses this engine to show an interactive gallery of images:
 
-http://alienblue.org/img/ab-canvas.jpg
+<img src="http://alienblue.org/img/ab-canvas.jpg" width=800 height=428 />
 
 ## Usage
 
